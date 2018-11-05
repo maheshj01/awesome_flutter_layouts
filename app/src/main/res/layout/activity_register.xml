@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_1"
+        tools:context=".RegisterActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="162dp"
+            android:layout_height="121dp"
+            android:layout_gravity="center"
+            android:src="@drawable/profile"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true" android:layout_marginTop="60dp"/>
+
+    <LinearLayout
+            android:layout_width="364dp"
+            android:layout_height="305dp"
+            android:weightSum="7"
+            android:orientation="vertical"
+            android:paddingTop="40dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_above="@+id/signup" android:layout_centerHorizontal="true">
+
+        <EditText
+                android:id="@+id/name"
+                android:layout_width="359dp"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:hint="Name"
+                android:backgroundTint="@color/white"
+                android:drawableLeft="@drawable/profileicon"
+                android:layout_centerHorizontal="true" android:inputType="text"/>
+
+        <android.support.design.widget.TextInputEditText
+                android:id="@+id/shopname"
+                android:hint="Store Name"
+                android:drawableLeft="@drawable/shopicon"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:backgroundTint="@color/white"
+                android:layout_centerHorizontal="true" android:inputType="text"/>
+
+        <android.support.design.widget.TextInputEditText
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2.5"
+                android:drawableLeft="@drawable/homeicon"
+                android:backgroundTint="@color/white"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:hint="Home Address"/>
+    </LinearLayout>
+
+    <Button
+            android:id="@+id/signup"
+            android:text="Sign Up"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btnbackground"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_alignParentBottom="true" android:layout_marginBottom="37dp"
+            android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
