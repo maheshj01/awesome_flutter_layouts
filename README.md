@@ -1,7 +1,8 @@
 # Awesome_Android_Layouts
+ 
  blue shade Gradient  | Purple Blue Gradient | Clean login built with Flutter
  -------------------------------
- </p>
+
 <p float="left;padding-left=10px">
   <img src="https://user-images.githubusercontent.com/31410839/48012687-99db9680-e148-11e8-9d14-573b36973d93.png" width="250" />
   <img src="https://user-images.githubusercontent.com/31410839/48012690-99db9680-e148-11e8-8095-df1373d6f2d1.png" width="250" /> 
@@ -19,3 +20,13 @@
   <img src="https://user-images.githubusercontent.com/31410839/53999545-cc82b380-4169-11e9-884d-cfc71a711ee5.png"  width="250" />
   <img src ="https://user-images.githubusercontent.com/31410839/53999548-ce4c7700-4169-11e9-8c0d-127a6f6ce3ff.png" width="250"/>
 </p>
+
+## Would you like to Contribute your Designs
+
+1. Fork the project
+2. Make sum cool designs
+3. submit a pull request
+
+**Note: Feel free to SUBMIT THE DART CODE,IF YOU WISH TO.....**
+
+**Tip: To link images/gifs upload the images to github cdn (Go to Issues of any git repo-->new issue --->drop the images in box  and you can use that url as a link to your images/gifs )**
