@@ -24,8 +24,13 @@
 ## Would you like to Contribute your Designs
 
 1. Fork the project
-2. Make sum cool designs
-3. submit a pull request
+2. Create a new Dart file in lib Make sum cool designs
+3. In Const.dart import your file
+4. add your class name in layout_list 
+5. add a unique title for identity to your layout in title_list
+6. Voila! your file is connected,submit a pull request
+
+need help: having some problems feel free to create an Issue,I am very much excited to see what you build :)
 
 **Note: Feel free to SUBMIT THE DART CODE,IF YOU WISH TO.....**
 
