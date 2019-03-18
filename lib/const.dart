@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'CustomListView.dart';
 import 'Empty_Page.dart';
+import 'UserProfile.dart';
 
 // import your file here
 
@@ -31,8 +32,8 @@ import 'Empty_Page.dart';
 
   // add your class name in this list
 
-  List layout_list = [CustomListView(),MyApp()];
+  List layout_list = [CustomListView(),MyApp(),UserProfile()];
 
   // add a title to your layout as an identity this will appear in the list View in main.dart
 
-  List layout_title= ["CustomListView","empty_page"];
+  List layout_title= ["CustomListView","empty_page","User Profile Page"];

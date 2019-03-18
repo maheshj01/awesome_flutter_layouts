@@ -185,7 +185,8 @@ class CustomListView extends StatelessWidget {
                                       child: Column(
                                         children: <Widget>[
                                           IconButton(
-                                              icon: Icon(Icons.more_horiz)),
+                                              icon: Icon(Icons.more_horiz),
+                                              onPressed: (){},),
                                           Text(
                                             "$currentitem",
                                             style: TextStyle(fontSize: 22),

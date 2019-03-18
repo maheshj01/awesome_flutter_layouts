@@ -25,9 +25,9 @@
 
 1. Fork the project
 2. Create a new Dart file in lib Make sum cool designs
-3. In Const.dart import your file
-4. add your class name in layout_list 
-5. add a unique title for identity to your layout in title_list
+3. In const.dart import your file
+4. add your class name in a list layout_list (In const.dart) 
+5. add a unique title in layout_title to identity your layout. (In const.dart)  
 6. Voila! your file is connected,submit a pull request
 
 need help: having some problems feel free to create an Issue,I am very much excited to see what you build :)
