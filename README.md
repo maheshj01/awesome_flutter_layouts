@@ -1,18 +1,8 @@
 # Awesome_Flutter_Layouts
  
- blue shade Gradient  | Purple Blue Gradient | Clean login built with Flutter
- -------------------------------
-
-<p float="left;padding-left=10px">
-  <img src="https://user-images.githubusercontent.com/31410839/54293138-64065d00-45d5-11e9-840f-a5bfaeb38841.png" width="250"/>
-  <img src="https://user-images.githubusercontent.com/31410839/54293135-636dc680-45d5-11e9-8788-9876c709143d.png" width="250" />
-  <img src="https://user-images.githubusercontent.com/31410839/54293137-636dc680-45d5-11e9-9d15-914ba5d75f67.jpg" width="250" /> 
-</p>
-
- 
 <p float="left;padding=10px">
   <img src="https://user-images.githubusercontent.com/31410839/53930685-3c386600-40b8-11e9-893a-acb8e22d3eb7.png" width="250" />
-  <img src ="https://user-images.githubusercontent.com/31410839/53930712-5eca7f00-40b8-11e9-8bc6-4dd6474566f3.png" width="250"/>
+  <img src ="https://user-images.githubusercontent.com/31410839/66274170-67c33f00-e899-11e9-8f77-bc2a987fd6b4.gif" width="220"/>
   <img src = "https://user-images.githubusercontent.com/31410839/53930581-cf24d080-40b7-11e9-8513-c7f2f9e179db.png" width="250"/>
 </p>
 
@@ -32,7 +22,5 @@
 6. Voila! your file is connected,submit a pull request
 
 need help: having some problems feel free to create an Issue,I am very much excited to see what you build :)
-
-**Note: Feel free to SUBMIT THE DART CODE,IF YOU WISH TO.....**
 
 **Tip: To link images/gifs upload the images to github cdn (Go to Issues of any git repo-->new issue --->drop the images in box  and you can use that url as a link to your images/gifs )**
