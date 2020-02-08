@@ -1,9 +1,10 @@
 import 'dart:convert';
 
-import 'package:awesome_flutter_layouts/const.dart' as prefix0;
+import 'package:awesome_flutter_layouts/const.dart';
 import 'package:flutter/material.dart';
 import 'const.dart';
 import 'package:http/http.dart' as http;
+import 'package:awesome_flutter_layouts/const/strings.dart';
 
 class CustomListView extends StatefulWidget {
   @override
@@ -226,18 +227,11 @@ class _CustomListViewState extends State<CustomListView> {
                   ),
                 ),
                 child: TabBar(
-                  tabs: <Widget>[
-                    Tab(
-                      child: Text("Designer"),
-                    ),
-                    Tab(
-                      child: Text("Category"),
-                    ),
-                    Tab(
-                      child: Text("Attention"),
-                    )
-                  ],
-                ),
+                    tabs: List.generate(tabBarTitle.length, (index) {
+                  return Tab(
+                    child: Text(tabBarTitle[index]),
+                  );
+                })),
               ),
               Expanded(
                 child: TabBarView(
@@ -245,9 +239,13 @@ class _CustomListViewState extends State<CustomListView> {
                     designerTab(),
                     Container(
                       color: Colors.green,
+                      alignment: Alignment.center,
+                      child: Text('Yet to Build'),
                     ),
                     Container(
                       color: Colors.red,
+                      alignment: Alignment.center,
+                      child: Text('Build something Awesome'),
                     ),
                   ],
                 ),

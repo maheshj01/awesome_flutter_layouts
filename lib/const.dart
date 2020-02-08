@@ -36,20 +36,20 @@ TextStyle subHeadingTextStyle =
     TextStyle(fontSize: 12, fontWeight: FontWeight.w500);
 // add your class name in this list
 
-List layout_list = [
+List layoutList = [
   CustomListView(),
-  MyApp(),
   UserProfile(),
   AwesomeEndDrawer(),
+  MyApp(),
 ];
 
-// add a title to your layout as an identity this will appear in the list View in main.dart
+// add a title to your awesome layout as an identity this will appear in the list View in main.dart
 
-List layout_title = [
+const List layout_title = [
   "CustomListView",
-  "empty_page",
   "User Profile Page",
   "Awesome end Drawer",
+  "Increment counter",
 ];
 // getting Random user data
 const String RANDOM_URL = "https://randomuser.me/api/?results=100";
@@ -62,3 +62,6 @@ List imageurl = [
   "https://i2.wp.com/allcelebrityprofile.com/wp-content/uploads/2015/01/rs_634x768-140902042341-634.Charlize-Theron-Modern-Luxury-JR4-90214-e1531525845675.jpg?fit=622%2C426&ssl=1",
   "https://www.desicomments.com/wp-content/uploads/Smiling-Aditya-Roy-Kapur-236-5.jpg",
 ];
+
+const SOMETEXT =
+    'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...';

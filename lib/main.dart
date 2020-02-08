@@ -56,10 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>layout_list[currentitem % layout_list.length]));
+                                      builder: (context) => layoutList[
+                                          currentitem % layoutList.length]));
                             },
                             leading: Icon(Icons.list),
-                            title: Text(layout_title[currentitem % layout_title.length]),
+                            title: Text(layout_title[
+                                currentitem % layout_title.length]),
                           ),
                           Container(
                             width: double.infinity,
@@ -75,4 +77,3 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
   }
 }
-
