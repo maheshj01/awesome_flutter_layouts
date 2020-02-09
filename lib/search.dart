@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:awesome_flutter_layouts/bloc/userbloc.dart';
 import 'package:awesome_flutter_layouts/const.dart';
@@ -13,7 +14,12 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  List<String> tabBarTitle = ['Fruits', 'Vegetables', 'Nuts & Seeds', 'Dairy'];
+  List<String> tabBarTitle = [
+    'Friends',
+    'Random Users',
+    'Acquaintance',
+    'Colleagues'
+  ];
 
   int selectedTab = 2;
 
@@ -21,35 +27,24 @@ class _SearchState extends State<Search> {
   ScrollController _controller1 = ScrollController();
 
   var data;
-  Future<void> fetchRandomUsers() async {
-    http.Response response = await http.get(RANDOM_URL);
-    if (response.statusCode == 200) {
-      var body = jsonDecode(response.body);
-      final Iterable list = body["results"];
-      // map each json object to model and addto list and return the list of models
-      final List<RandomUserModel> userList =
-          list.map((model) => RandomUserModel.fromJson(model)).toList();
-      userBloc.userController.sink.add(userList);
-    }
-  }
 
   Future<void> getFilteredList() async {}
 
-  Widget _vegetablesWidget() {
+  Widget _acquaintance() {
     return Center(
-      child: Text('Vegetable Widgets'),
+      child: Text('_acquaintance will apear here'),
     );
   }
 
-  Widget _nutsWidget() {
+  Widget _friends() {
     return Center(
-      child: Text('Nuts & Seeds Widgets'),
+      child: Text('Friends will appear here '),
     );
   }
 
-  Widget _dairyWidget() {
+  Widget _colleagues() {
     return Center(
-      child: Text('DAIRY Widget'),
+      child: Text('Colleagues will appear here'),
     );
   }
 
@@ -65,7 +60,7 @@ class _SearchState extends State<Search> {
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : _fruitWidget(snapshot: snapshot);
+              : _randomUsers(snapshot: snapshot);
         });
   }
 
@@ -80,22 +75,49 @@ class _SearchState extends State<Search> {
     );
   }
 
-  Widget _fruitWidget({AsyncSnapshot<List<RandomUserModel>> snapshot}) {
+  Widget _cardWidget(AsyncSnapshot<List<RandomUserModel>> snapshot, int index) {
+    return Stack(fit: StackFit.expand, children: <Widget>[
+      Opacity(
+        opacity: 0.7,
+        child: Container(
+          decoration: BoxDecoration(
+              color: materialColors[index % materialColors.length],
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage('${snapshot.data[index].picture}')),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: 2, offset: Offset(1, 0.5), spreadRadius: 0.5)
+              ]),
+          margin: EdgeInsets.only(left: 5, bottom: 10, top: 10),
+          alignment: Alignment.center,
+        ),
+      ),
+      Container(
+        alignment: Alignment.center,
+        child: Text(
+          '${snapshot.data[index].first} ${snapshot.data[index].last}',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      )
+    ]);
+  }
+
+  Widget _randomUsers({AsyncSnapshot<List<RandomUserModel>> snapshot}) {
     return GestureDetector(
       onPanUpdate: (details) {
         //print(details.globalPosition.dy);
         if (details.delta.dy > 0) {
           if (_controller.offset < 0) {
             _controller.jumpTo(0);
+            _controller1.jumpTo(0);
           }
-          if (_controller1.offset < 0) {
-            _controller1.animateTo(0,
-                duration: Duration(milliseconds: 500), curve: Curves.ease);
-            _controller.animateTo(0,
-                duration: Duration(milliseconds: 500), curve: Curves.ease);
-          }
-          // print('We are swiping up');
-          //  print(details.delta.dy);
+
           _controller.jumpTo(_controller.offset - details.delta.dy);
           _controller1.jumpTo(_controller1.offset - details.delta.dy);
         } else if (details.delta.dy < 0) {
@@ -135,40 +157,16 @@ class _SearchState extends State<Search> {
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
                   if (index.isEven) {
-                    return Stack(
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                              color:
-                                  materialColors[index % materialColors.length],
-                              borderRadius: BorderRadius.circular(20)),
-                          height: 300,
-                          margin:
-                              EdgeInsets.only(right: 5, bottom: 10, top: 10),
-                          width: MediaQuery.of(context).size.width / 2 - 10,
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            '${snapshot.data[index].first} ${snapshot.data[index].last}',
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Opacity(
-                          opacity: 0.4,
-                          child: Container(
-                              height: 200,
-                              alignment: Alignment.center,
-                              child: Image.network(
-                                '${snapshot.data[index].picture}',
-                                fit: BoxFit.contain,
-                              )),
-                        )
-                      ],
-                    );
+                    return Container(
+                        height: 300, child: _cardWidget(snapshot, index));
                   } else {
                     return SizedBox();
                   }
                 },
               ),
+            ),
+            SizedBox(
+              width: 10,
             ),
             Expanded(
               child: ListView.builder(
@@ -176,23 +174,12 @@ class _SearchState extends State<Search> {
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
-                  if (index == 1) {
+                  if (index == random || index == 1) {
                     return _showAd();
                   }
                   if (index.isOdd) {
                     return Container(
-                      height: 300,
-                      decoration: BoxDecoration(
-                          color: materialColors[index % materialColors.length],
-                          borderRadius: BorderRadius.circular(20)),
-                      margin: EdgeInsets.only(left: 5, bottom: 10, top: 10),
-                      width: MediaQuery.of(context).size.width / 2 - 50,
-                      alignment: Alignment.center,
-                      child: Text(
-                        '${snapshot.data[index].first} ${snapshot.data[index].last}',
-                        textAlign: TextAlign.center,
-                      ),
-                    );
+                        height: 300, child: _cardWidget(snapshot, index));
                   } else {
                     return SizedBox();
                   }
@@ -211,12 +198,42 @@ class _SearchState extends State<Search> {
     _controller.addListener(() {
       // _controller.jumpTo(_controller.offset);
     });
-    _controller1.addListener(() {
-      // _controller1.animateTo(_controller.offset,
-      //     curve: Curves.linear, duration: Duration(milliseconds: 500));
-    });
+    _controller1.addListener(() {});
   }
 
+  void _searchUser(String searchQuery) {
+    List<RandomUserModel> searchResult = [];
+    userBloc.userController.sink.add(null);
+    print('total users = ${totalUsers.length}'); //
+    if (searchQuery.isEmpty) {
+      userBloc.userController.sink.add(totalUsers);
+      return;
+    }
+    totalUsers.forEach((user) {
+      if (user.first.toLowerCase().contains(searchQuery.toLowerCase()) ||
+          user.last.toLowerCase().contains(searchQuery.toLowerCase())) {
+        searchResult.add(user);
+      }
+    });
+    print('searched users length = ${searchResult.length}'); //
+    userBloc.userController.sink.add(searchResult);
+  }
+
+  Future<void> fetchRandomUsers() async {
+    http.Response response = await http.get(RANDOM_URL);
+    if (response.statusCode == 200) {
+      var body = jsonDecode(response.body);
+      final Iterable list = body["results"];
+      // map each json object to model and addto list and return the list of models
+      totalUsers =
+          list.map((model) => RandomUserModel.fromJson(model)).toList();
+      userBloc.userController.sink.add(totalUsers);
+    }
+  }
+
+  int random;
+  List<RandomUserModel> totalUsers = [];
+  Random rng = Random();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -233,9 +250,13 @@ class _SearchState extends State<Search> {
         ),
         body: Column(
           children: <Widget>[
+            SizedBox(
+              height: 20,
+            ),
             Container(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
+                onChanged: (text) => _searchUser(text),
                 decoration: InputDecoration(
                     suffixIcon: Icon(Icons.search),
                     hintText: 'Search',
@@ -259,6 +280,8 @@ class _SearchState extends State<Search> {
                         selectedTab = x;
                       });
                       if (x == 1) {
+                        random = rng.nextInt(100);
+                        print('random = $random');
                         fetchRandomUsers();
                       }
                     },
@@ -283,10 +306,10 @@ class _SearchState extends State<Search> {
             ),
             Expanded(
                 child: selectedTab == 0
-                    ? _fruitWidget()
+                    ? _friends()
                     : selectedTab == 1
                         ? usersWidget()
-                        : selectedTab == 2 ? _nutsWidget() : _dairyWidget())
+                        : selectedTab == 2 ? _acquaintance() : _colleagues())
           ],
         ),
       ),
