@@ -1,13 +1,16 @@
 import 'dart:async';
 
 import 'package:awesome_flutter_layouts/bloc/bloc.dart';
+import 'package:awesome_flutter_layouts/models/usermodel.dart';
 
 class UserBloc extends Bloc {
-  // final controller = StreamController<List<UserModel>>();
+  final userController = StreamController<List<RandomUserModel>>.broadcast();
 
   @override
   void dispose() {
     // TODO: implement dispose
-    // controller.close();
+    userController.close();
   }
 }
+
+UserBloc userBloc = UserBloc();

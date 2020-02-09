@@ -33,6 +33,18 @@ List<List<Color>> colors = <List<Color>>[
   ],
 ];
 
+List<Color> materialColors = [
+  Colors.amberAccent[100],
+  Color(0xffe6ee9c),
+  Colors.green[300],
+  Colors.teal[100],
+  Colors.indigo[100],
+  Colors.purple[100],
+  Colors.pink[100],
+  Colors.brown[100],
+  Colors.orange[100],
+  Colors.blueGrey[100],
+];
 TextStyle subHeadingTextStyle =
     TextStyle(fontSize: 12, fontWeight: FontWeight.w500);
 // add your class name in this list
@@ -52,7 +64,7 @@ const List layout_title = [
   "User Profile Page",
   "Awesome end Drawer",
   'Search As You Type',
-      "Increment counter",
+  "Increment counter",
 ];
 // getting Random user data
 const String RANDOM_URL = "https://randomuser.me/api/?results=100";
