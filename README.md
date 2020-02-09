@@ -2,14 +2,17 @@
  
 <p float="left;padding=10px">
   <img src="https://user-images.githubusercontent.com/31410839/53930685-3c386600-40b8-11e9-893a-acb8e22d3eb7.png" width="250" />
-  <img src ="https://user-images.githubusercontent.com/31410839/66274170-67c33f00-e899-11e9-8f77-bc2a987fd6b4.gif" width="220"/>
+  <img src ="https://user-images.githubusercontent.com/31410839/66274170-67c33f00-e899-11e9-8f77-bc2a987fd6b4.gif" width="210"/>
   <img src = "https://user-images.githubusercontent.com/31410839/53930581-cf24d080-40b7-11e9-8513-c7f2f9e179db.png" width="250"/>
 </p>
 
 <p float="left;padding=10px">
   <img src="https://user-images.githubusercontent.com/31410839/53999545-cc82b380-4169-11e9-884d-cfc71a711ee5.png"  width="250" />
-  <img src ="https://user-images.githubusercontent.com/31410839/53999548-ce4c7700-4169-11e9-8c0d-127a6f6ce3ff.png" width="250"/>
+  <img src ="https://user-images.githubusercontent.com/31410839/53999548-ce4c7700-4169-11e9-8c0d-127a6f6ce3ff.png" width="245"/>
   <img src="https://user-images.githubusercontent.com/31410839/54543309-6f85c980-49c3-11e9-8093-643e5b88c8aa.png" width="250")/> 
+</p>
+<p float="left;padding=10px">
+ <img src="https://user-images.githubusercontent.com/31410839/74084319-f89e6700-4a93-11ea-84fb-b8b228378a29.gif" width="250"
 </p>
 
 ## Would you like to Contribute your Designs
