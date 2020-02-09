@@ -22,7 +22,7 @@ class _AwesomeEndDrawerState extends State<AwesomeEndDrawer> {
             )),
           ),
           ListView(
-              children: List.generate(7, (x) {
+              children: List.generate(4, (x) {
             if (x == 0) {
               return Container(
                 height: 100,
