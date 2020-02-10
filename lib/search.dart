@@ -158,7 +158,7 @@ class _SearchState extends State<Search> {
                 itemBuilder: (BuildContext context, int index) {
                   if (index.isEven) {
                     return Container(
-                        height: 300, child: _cardWidget(snapshot, index));
+                        height: 200, child: _cardWidget(snapshot, index));
                   } else {
                     return SizedBox();
                   }
@@ -174,9 +174,9 @@ class _SearchState extends State<Search> {
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
-                  if (index == random || index == 1) {
-                    return _showAd();
-                  }
+                  // if (index == random || index == 1) {
+                  //   return _showAd();
+                  // }
                   if (index.isOdd) {
                     return Container(
                         height: 300, child: _cardWidget(snapshot, index));
