@@ -9,10 +9,13 @@
 <p float="left;padding=10px">
   <img src="https://user-images.githubusercontent.com/31410839/53999545-cc82b380-4169-11e9-884d-cfc71a711ee5.png"  width="250" />
   <img src ="https://user-images.githubusercontent.com/31410839/53999548-ce4c7700-4169-11e9-8c0d-127a6f6ce3ff.png" width="245"/>
-  <img src="https://user-images.githubusercontent.com/31410839/54543309-6f85c980-49c3-11e9-8093-643e5b88c8aa.png" width="250")/> 
+  <img src="https://user-images.githubusercontent.com/31410839/54543309-6f85c980-49c3-11e9-8093-643e5b88c8aa.png" width="250"/> 
 </p>
 <p float="left;padding=10px">
- <img src="https://user-images.githubusercontent.com/31410839/74084319-f89e6700-4a93-11ea-84fb-b8b228378a29.gif" width="250"
+ <img src="https://user-images.githubusercontent.com/31410839/74084319-f89e6700-4a93-11ea-84fb-b8b228378a29.gif" width="250"/>
+<a href="https://medium.com/@maheshmnj/search-as-you-type-in-flutter-e042168e6517">
+<img src="https://miro.medium.com/max/580/1*bbZO52HX0Xos_2D6hW4zGQ.gif" width="250"/>
+</a>
 </p>
 
 ## Would you like to Contribute your Designs
