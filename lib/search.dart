@@ -316,38 +316,3 @@ class _SearchState extends State<Search> {
     );
   }
 }
-
-//emilecode: we create a list of fruits
-List<String> listOfFruits = [
-  'Papaya',
-  'Apricot',
-  'Durian',
-  'Boysenberry',
-  'Longan',
-  'Prune',
-  'Common fig',
-  'Muskmelon',
-  'Pomelo',
-  'Tangelo',
-  'Coconut',
-  'Raspberry',
-  'Apple',
-  'Persimmon',
-  'Pineapple',
-  'Lime',
-  'Quince',
-  'Cherry',
-  'Pear',
-  'Tangerine',
-  'Strawberry',
-  'Zebosu',
-  'Eanda',
-  'Anach',
-  'Kuriac',
-  'Eto',
-  'Salty Chicory',
-  'Crimson Chives',
-  'Sea Celery',
-  'Daydream Grape',
-  'Young Tamarind',
-];
