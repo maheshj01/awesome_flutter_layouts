@@ -22,6 +22,9 @@ We appreciate any contribution, from fixing a grammar mistake in a comment to Im
 2. Create a new branch
 3. create your Awesome UI on the new branch 
 4. once done Submit a Pull a Request.
+5. In lib/const/const.dart import your file
+6. add your class name in a list layout_list (In const.dart)  
+7. Voila! your layout is connected,submit a pull request
 
 # Some Resources to help you contribute 
 
