@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:awesome_flutter_layouts/bloc/userbloc.dart';
-import 'package:awesome_flutter_layouts/const.dart';
+import 'package:awesome_flutter_layouts/const/const.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 

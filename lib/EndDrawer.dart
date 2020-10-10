@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'const.dart';
+import 'const/const.dart';
 
 class AwesomeEndDrawer extends StatefulWidget {
   @override
