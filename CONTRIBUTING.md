@@ -10,6 +10,7 @@ help new contributers to open source.
 - You submitted work fulfils or mostly fulfils our styles and standards
 - You can also submit any applications clone you love  . 
 - prefer to keep a separate file for each UI.
+- prefer to do custom implementations than using third party libraries (optional)
 - feel free to create Custom Widgets
 - Please refer the [readme of this repo](https://github.com/maheshmnj/flutter-Testing) for the folder structure to be followed
 - Follow the [dart best practices](https://dart.dev/guides/language/effective-dart) to maintain the quality of code

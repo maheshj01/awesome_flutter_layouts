@@ -1,9 +1,9 @@
 import 'package:awesome_flutter_layouts/search.dart';
 import 'package:flutter/material.dart';
-import 'CustomListView.dart';
-import 'Empty_Page.dart';
-import 'UserProfile.dart';
-import 'EndDrawer.dart';
+import '../CustomListView.dart';
+import '../multi_column_picker.dart';
+import '../UserProfile.dart';
+import '../EndDrawer.dart';
 
 // import your file here
 
@@ -64,7 +64,7 @@ const List layout_title = [
   "User Profile Page",
   "Awesome end Drawer",
   'Search As You Type',
-  "Increment counter",
+  "BottomSheets",
 ];
 // getting Random user data
 const String RANDOM_URL = "https://randomuser.me/api/?results=100";
