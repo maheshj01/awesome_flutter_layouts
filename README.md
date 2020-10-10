@@ -19,15 +19,9 @@
  <img src="https://user-images.githubusercontent.com/31410839/95657524-8c986500-0b32-11eb-802c-fd18a21f481b.gif" width="250"/>
 </p>
 
-## Would you like to Contribute your Designs
+## Would you like to Contribute your Designs? Please refer the [Contribution guidelines](https://github.com/maheshmnj/Awesome-Flutter-Layouts/blob/master/CONTRIBUTING.md) before you dive In
 
-1. Fork the project
-2. Create a new Dart file in lib Make sum cool designs
-3. In const.dart import your file
-4. add your class name in a list layout_list (In const.dart) 
-5. add a unique title in layout_title to identity your layout. (In const.dart)  
-6. Voila! your file is connected,submit a pull request
-
-need help: having some problems feel free to create an Issue,I am very much excited to see what you build :)
+Need help? or Looks Something wrong feel free to create an Issue;
+I am very much excited to see what you build :)
 
 **Tip: To link images/gifs upload the images to github cdn (Go to Issues of any git repo-->new issue --->drop the images in box  and you can use that url as a link to your images/gifs )**
