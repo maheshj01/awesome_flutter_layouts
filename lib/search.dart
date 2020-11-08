@@ -243,16 +243,13 @@ class _SearchState extends State<Search> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
-          leading: IconButton(icon: Icon(Icons.menu), onPressed: null),
-          actions: <Widget>[
+          leading: const IconButton(icon: Icon(Icons.menu), onPressed: null),
+          actions: const <Widget>[
             IconButton(icon: Icon(Icons.shopping_basket), onPressed: null)
           ],
         ),
         body: Column(
           children: <Widget>[
-            SizedBox(
-              height: 20,
-            ),
             Container(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
@@ -309,7 +306,9 @@ class _SearchState extends State<Search> {
                     ? _friends()
                     : selectedTab == 1
                         ? usersWidget()
-                        : selectedTab == 2 ? _acquaintance() : _colleagues())
+                        : selectedTab == 2
+                            ? _acquaintance()
+                            : _colleagues())
           ],
         ),
       ),

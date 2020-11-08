@@ -101,10 +101,10 @@ class _UserProfileState extends State<UserProfile> {
                                                 ),
                                               ),
                                             ),
-                                              Expanded(
-                                            flex: 1,
-                                            child: Container(),
-                                          )
+                                            Expanded(
+                                              flex: 1,
+                                              child: Container(),
+                                            )
                                           ],
                                         ),
                                       ),
@@ -160,31 +160,42 @@ class _UserProfileState extends State<UserProfile> {
                                             Expanded(
                                               flex: 1,
                                               child: Container(
-                                                alignment:
-                                                    Alignment.center,
-                                                child: Text("26/01/1980",style: TextStyle(fontSize: 14),textAlign: TextAlign.justify,),
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "26/01/1980",
+                                                  style:
+                                                      TextStyle(fontSize: 14),
+                                                  textAlign: TextAlign.justify,
+                                                ),
                                               ),
                                             ),
                                             Expanded(
                                               flex: 1,
                                               child: Container(
-                                                alignment:
-                                                    Alignment.center,
-                                                child: Text("Hudson's Store",style: TextStyle(fontSize: 14),textAlign: TextAlign.justify,),
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "Hudson's Store",
+                                                  style:
+                                                      TextStyle(fontSize: 14),
+                                                  textAlign: TextAlign.justify,
+                                                ),
                                               ),
                                             ),
                                             Expanded(
                                               flex: 1,
                                               child: Container(
-                                                alignment:
-                                                    Alignment.center,
-                                                child: Text("West NewBerry Massachussets 1234",style: TextStyle(fontSize: 14),),
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "West NewBerry Massachussets 1234",
+                                                  style:
+                                                      TextStyle(fontSize: 14),
+                                                ),
                                               ),
                                             ),
-                                              Expanded(
-                                            flex: 1,
-                                            child: Container(),
-                                          )
+                                            Expanded(
+                                              flex: 1,
+                                              child: Container(),
+                                            )
                                           ],
                                         ),
                                       ),
@@ -196,7 +207,8 @@ class _UserProfileState extends State<UserProfile> {
                       )),
                 )),
             Container(
-              padding: EdgeInsets.only(left:20,right: 20,top: 10,bottom: 10),
+              padding:
+                  EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
               width: double.infinity,
               height: 70,
               child: MaterialButton(
