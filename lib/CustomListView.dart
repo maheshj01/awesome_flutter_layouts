@@ -13,13 +13,14 @@ class CustomListView extends StatefulWidget {
   _CustomListViewState createState() => _CustomListViewState();
 }
 
-class _CustomListViewState extends State<CustomListView> {
+class _CustomListViewState extends State<CustomListView>
+    with SingleTickerProviderStateMixin {
   bool isLoading = true;
   var data;
   @override
   void initState() {
-    fetchRandomData();
     super.initState();
+    fetchRandomData();
   }
 
   void fetchRandomData() async {
@@ -34,26 +35,41 @@ class _CustomListViewState extends State<CustomListView> {
   }
 
   Widget _designerTab() {
-    return Container(
-      padding: const EdgeInsets.only(left: 10, right: 10),
-      child: isLoading == true
-          ? showLoading()
-          : ListView.builder(
-              itemCount: data.length, //total no of list items
-              itemBuilder: (BuildContext context, int currentItem) {
-                return DesignerCardWidget(
-                  currentItem: currentItem,
-                  name: data[currentItem]["name"]["first"].toString() +
-                      " " +
-                      data[currentItem]["name"]["last"].toString(),
-                  avatarUrl: data[currentItem]["picture"]["medium"],
-                  phone: data[currentItem]["phone"].toString(),
-                );
-              },
-            ),
+    return Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        Container(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: isLoading == true
+              ? showLoading()
+              : ListView.builder(
+                  itemCount: data.length, //total no of list items
+                  itemBuilder: (BuildContext context, int currentItem) {
+                    return DesignerCardWidget(
+                      currentItem: currentItem,
+                      name: data[currentItem]["name"]["first"].toString() +
+                          " " +
+                          data[currentItem]["name"]["last"].toString(),
+                      avatarUrl: data[currentItem]["picture"]["medium"],
+                      phone: data[currentItem]["phone"].toString(),
+                    );
+                  },
+                ),
+        ),
+        FloatingSnackBar(
+          text: 'Some Message in the snacbar',
+          animationController: _animationController,
+        )
+      ],
     );
   }
 
+  void show() {
+    _animationController.reset();
+    _animationController.forward();
+  }
+
+  AnimationController _animationController;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -61,7 +77,9 @@ class _CustomListViewState extends State<CustomListView> {
         child: Scaffold(
           floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),
-            onPressed: () {},
+            onPressed: () {
+              show();
+            },
           ),
           body: Column(
             children: <Widget>[
@@ -127,6 +145,82 @@ class _CustomListViewState extends State<CustomListView> {
             ],
           ),
         ));
+  }
+}
+
+class FloatingSnackBar extends StatefulWidget {
+  FloatingSnackBar({Key key, this.text, this.animationController})
+      : super(key: key);
+
+  final String text;
+  AnimationController animationController;
+
+  @override
+  FloatingSnackBarState createState() => FloatingSnackBarState();
+}
+
+class FloatingSnackBarState extends State<FloatingSnackBar>
+    with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void _init() {
+    if (widget.animationController != null) {
+      widget.animationController = AnimationController(
+          vsync: this, duration: const Duration(milliseconds: 500));
+      _animationController.addStatusListener((status) {
+        if (_animationController.status == AnimationStatus.completed) {
+          Future.delayed(const Duration(seconds: 2), () {
+            _animationController.reverse();
+          });
+        }
+      });
+    }
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    _animationController.addStatusListener((status) {
+      if (_animationController.status == AnimationStatus.completed) {
+        Future.delayed(const Duration(seconds: 2), () {
+          _animationController.reverse();
+        });
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _init();
+  }
+
+  double getHeight() {
+    if (widget.animationController != null) {
+      return widget.animationController.value * 50;
+    }
+    return _animationController.value * 50;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _animationController,
+      builder: (ctx, child) => Container(
+        color: Colors.black,
+        width: double.infinity,
+        height: getHeight(),
+        child: Text(
+          widget.text,
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
   }
 }
 
