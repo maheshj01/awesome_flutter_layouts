@@ -52,7 +52,7 @@ class _SearchState extends State<Search> {
     return StreamBuilder(
         stream: userBloc.userController.stream,
         builder: (BuildContext buildContext,
-            AsyncSnapshot<List<RandomUserModel>> snapshot) {
+            AsyncSnapshot<List<RandomUserModel>?> snapshot) {
           if (snapshot == null) {
             return CircularProgressIndicator();
           }
@@ -75,7 +75,8 @@ class _SearchState extends State<Search> {
     );
   }
 
-  Widget _cardWidget(AsyncSnapshot<List<RandomUserModel>> snapshot, int index) {
+  Widget _cardWidget(
+      AsyncSnapshot<List<RandomUserModel>?> snapshot, int index) {
     return Stack(fit: StackFit.expand, children: <Widget>[
       Opacity(
         opacity: 0.7,
@@ -84,9 +85,9 @@ class _SearchState extends State<Search> {
               color: materialColors[index % materialColors.length],
               image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage('${snapshot.data[index].picture}')),
+                  image: NetworkImage('${snapshot.data![index].picture}')),
               borderRadius: BorderRadius.circular(20),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                     blurRadius: 2, offset: Offset(1, 0.5), spreadRadius: 0.5)
               ]),
@@ -97,7 +98,7 @@ class _SearchState extends State<Search> {
       Container(
         alignment: Alignment.center,
         child: Text(
-          '${snapshot.data[index].first} ${snapshot.data[index].last}',
+          '${snapshot.data![index].first} ${snapshot.data![index].last}',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18,
@@ -108,7 +109,8 @@ class _SearchState extends State<Search> {
     ]);
   }
 
-  Widget _randomUsers({AsyncSnapshot<List<RandomUserModel>> snapshot}) {
+  Widget _randomUsers(
+      {required AsyncSnapshot<List<RandomUserModel>?> snapshot}) {
     return GestureDetector(
       onPanUpdate: (details) {
         //print(details.globalPosition.dy);
@@ -154,7 +156,7 @@ class _SearchState extends State<Search> {
               child: ListView.builder(
                 controller: _controller,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: snapshot.data.length,
+                itemCount: snapshot.data!.length,
                 itemBuilder: (BuildContext context, int index) {
                   if (index.isEven) {
                     return Container(
@@ -172,7 +174,7 @@ class _SearchState extends State<Search> {
               child: ListView.builder(
                 controller: _controller1,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: snapshot.data.length,
+                itemCount: snapshot.data!.length,
                 itemBuilder: (BuildContext context, int index) {
                   // if (index == random || index == 1) {
                   //   return _showAd();
@@ -215,12 +217,11 @@ class _SearchState extends State<Search> {
         searchResult.add(user);
       }
     });
-    print('searched users length = ${searchResult.length}'); //
     userBloc.userController.sink.add(searchResult);
   }
 
   Future<void> fetchRandomUsers() async {
-    http.Response response = await http.get(RANDOM_URL);
+    final http.Response response = await http.get(Uri.parse(RANDOM_URL));
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       final Iterable list = body["results"];
@@ -231,7 +232,7 @@ class _SearchState extends State<Search> {
     }
   }
 
-  int random;
+  late int random;
   List<RandomUserModel> totalUsers = [];
   Random rng = Random();
   @override
@@ -244,7 +245,7 @@ class _SearchState extends State<Search> {
           backgroundColor: Colors.white,
           elevation: 0.0,
           leading: IconButton(icon: Icon(Icons.menu), onPressed: null),
-          actions: <Widget>[
+          actions: const <Widget>[
             IconButton(icon: Icon(Icons.shopping_basket), onPressed: null)
           ],
         ),
@@ -309,7 +310,9 @@ class _SearchState extends State<Search> {
                     ? _friends()
                     : selectedTab == 1
                         ? usersWidget()
-                        : selectedTab == 2 ? _acquaintance() : _colleagues())
+                        : selectedTab == 2
+                            ? _acquaintance()
+                            : _colleagues())
           ],
         ),
       ),

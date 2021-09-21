@@ -21,12 +21,11 @@ class _CustomListViewState extends State<CustomListView> {
     super.initState();
   }
 
-  void fetchRandomData() async {
-    http.Response response = await http.get(RANDOM_URL);
+  Future<void> fetchRandomData() async {
+    http.Response response = await http.get(Uri.parse(RANDOM_URL));
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       data = body["results"];
-      print(data.length);
       setState(() {
         isLoading = false;
       });

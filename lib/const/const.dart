@@ -12,28 +12,28 @@ import '../EndDrawer.dart';
 List<List<Color>> colors = <List<Color>>[
   [
     Colors.redAccent,
-    Colors.red[200],
+    Colors.red.shade200,
   ],
   [
     Colors.pinkAccent,
-    Colors.pink[200],
+    Colors.pink.shade200,
   ],
   [
     Colors.orangeAccent,
-    Colors.orange[200],
+    Colors.orange.shade200,
   ],
   [
     Colors.purpleAccent,
-    Colors.purple[200],
+    Colors.purple.shade200,
   ],
-  [Colors.cyanAccent, Colors.cyan[200]],
+  [Colors.cyanAccent, Colors.cyan.shade200],
   [
     Colors.yellowAccent,
-    Colors.yellow[200],
+    Colors.yellow.shade200,
   ],
 ];
 
-List<Color> materialColors = [
+List<Color?> materialColors = [
   Colors.amberAccent[100],
   Color(0xffe6ee9c),
   Colors.green[300],

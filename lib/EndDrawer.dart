@@ -22,7 +22,7 @@ class _AwesomeEndDrawerState extends State<AwesomeEndDrawer> {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Colors.black87, Colors.grey[800]],
+                    colors: [Colors.black87, Colors.grey.shade800],
                   ),
                 ),
               ),

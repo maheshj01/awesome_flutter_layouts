@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class TimePickerWidget extends StatefulWidget {
   final Function(String) onChange;
 
-  const TimePickerWidget({Key key, this.onChange}) : super(key: key);
+  const TimePickerWidget({Key? key, required this.onChange}) : super(key: key);
   @override
   _TimePickerWidgetState createState() => _TimePickerWidgetState();
 }
