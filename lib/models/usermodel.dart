@@ -15,10 +15,12 @@ class RandomUserModel {
         title = json['name']['title'],
         first = json['name']['first'],
         last = json['name']['last'],
-        city = json['city'],
-        state = json['state'],
-        country = json['country'],
-        postcode = json['postcode'],
+        city = json['location']['city'],
+        state = json['location']['state'],
+        country = json['location']['country'],
+        postcode = 'SD6 1453',
+
+        /// API has some data int and some string
         picture = json['picture']['large'],
         phone = json['phone'];
 }

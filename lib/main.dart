@@ -13,13 +13,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: MyHomePage(title: 'Awesome Flutter Layouts'),
+      home: const MyHomePage(title: 'Awesome Flutter Layouts'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -28,7 +28,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  final int _counter = 0;
+
+  Future<void> _push(Widget child) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => child));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,40 +40,24 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: ListView.builder(
+        body: ListView.separated(
           itemCount: layout_title.length,
-          itemBuilder: (BuildContext context, int currentitem) {
+          separatorBuilder: (BuildContext context, int currentitem) {
             return Container(
               width: double.infinity,
-              height: 80,
-              child: Column(
-                children: <Widget>[
-                  Container(
-                      height: 80,
-                      width: double.infinity,
-                      child: Column(
-                        children: <Widget>[
-                          ListTile(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => layoutList[
-                                          currentitem % layoutList.length]));
-                            },
-                            leading: Icon(Icons.list),
-                            title: Text(layout_title[
-                                currentitem % layout_title.length]),
-                          ),
-                          Container(
-                            width: double.infinity,
-                            height: 0.1,
-                            color: Colors.black,
-                          )
-                        ],
-                      )),
-                ],
-              ),
+              height: 0.1,
+              color: Colors.black,
+            );
+          },
+          itemBuilder: (BuildContext context, int currentitem) {
+            return ListTile(
+              onTap: () {
+                final Widget child =
+                    layoutList[currentitem % layoutList.length];
+                _push(child);
+              },
+              leading: Icon(Icons.list),
+              title: Text(layout_title[currentitem % layout_title.length]),
             );
           },
         ));

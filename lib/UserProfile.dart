@@ -47,7 +47,7 @@ class _UserProfileState extends State<UserProfile> {
                                 minRadius: 18,
                                 backgroundColor: Colors.white,
                                 child: Image.asset(
-                                  "assets/images/profile_pic.png",
+                                  'assets/images/profile_pic.png',
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -58,7 +58,7 @@ class _UserProfileState extends State<UserProfile> {
                             child: Container(
                               alignment: Alignment.center,
                               child: Text(
-                                "Mr Hudson",
+                                'Mr Hudson',
                                 style: TextStyle(fontSize: 20),
                               ),
                             ),
@@ -118,7 +118,7 @@ class _UserProfileState extends State<UserProfile> {
                                             child: Container(
                                               alignment: Alignment.centerLeft,
                                               child: Text(
-                                                "Date Of Birth:",
+                                                'Date Of Birth:',
                                                 style: TextStyle(fontSize: 16),
                                               ),
                                             ),
@@ -128,7 +128,7 @@ class _UserProfileState extends State<UserProfile> {
                                             child: Container(
                                               alignment: Alignment.centerLeft,
                                               child: Text(
-                                                "Shop Name:",
+                                                'Shop Name:',
                                                 style: TextStyle(
                                                   fontSize: 16,
                                                 ),
@@ -140,7 +140,7 @@ class _UserProfileState extends State<UserProfile> {
                                             child: Container(
                                               alignment: Alignment.centerLeft,
                                               child: Text(
-                                                "Address:",
+                                                'Address:',
                                                 style: TextStyle(fontSize: 16),
                                               ),
                                             ),
@@ -162,7 +162,7 @@ class _UserProfileState extends State<UserProfile> {
                                               child: Container(
                                                 alignment:
                                                     Alignment.center,
-                                                child: Text("26/01/1980",style: TextStyle(fontSize: 14),textAlign: TextAlign.justify,),
+                                                child: Text('26/01/1980',style: TextStyle(fontSize: 14),textAlign: TextAlign.justify,),
                                               ),
                                             ),
                                             Expanded(
@@ -178,7 +178,7 @@ class _UserProfileState extends State<UserProfile> {
                                               child: Container(
                                                 alignment:
                                                     Alignment.center,
-                                                child: Text("West NewBerry Massachussets 1234",style: TextStyle(fontSize: 14),),
+                                                child: Text('West NewBerry Massachussets 1234',style: TextStyle(fontSize: 14),),
                                               ),
                                             ),
                                               Expanded(
@@ -200,7 +200,7 @@ class _UserProfileState extends State<UserProfile> {
               width: double.infinity,
               height: 70,
               child: MaterialButton(
-                child: Text("Edit Profile"),
+                child: Text('Edit Profile'),
                 color: Colors.orangeAccent,
                 onPressed: () {},
               ),

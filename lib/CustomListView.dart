@@ -22,10 +22,10 @@ class _CustomListViewState extends State<CustomListView> {
   }
 
   Future<void> fetchRandomData() async {
-    http.Response response = await http.get(Uri.parse(RANDOM_URL));
+    final http.Response response = await http.get(Uri.parse(RANDOM_URL));
     if (response.statusCode == 200) {
-      var body = jsonDecode(response.body);
-      data = body["results"];
+      final body = jsonDecode(response.body);
+      data = body['results'];
       setState(() {
         isLoading = false;
       });
@@ -44,7 +44,7 @@ class _CustomListViewState extends State<CustomListView> {
               itemBuilder: (BuildContext context, int currentitem) {
                 return GestureDetector(
                   onTap: () {
-                    print("tapped on item $currentitem");
+                    print('tapped on item $currentitem');
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -52,10 +52,10 @@ class _CustomListViewState extends State<CustomListView> {
                           colors: colors[currentitem % colors.length]),
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
-                        new BoxShadow(
+                        BoxShadow(
                             color: Colors.black54,
                             blurRadius: 3.5,
-                            offset: new Offset(1.0, 2.0)),
+                            offset: Offset(1.0, 2.0)),
                       ],
                     ),
                     margin: EdgeInsets.only(
@@ -71,7 +71,7 @@ class _CustomListViewState extends State<CustomListView> {
                             margin: EdgeInsets.only(left: 20, top: 15),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(
-                                  data[currentitem]["picture"]["medium"]),
+                                  data[currentitem]['picture']['medium']),
                               radius: 30,
                             ),
                           ),
@@ -94,15 +94,15 @@ class _CustomListViewState extends State<CustomListView> {
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Text(
-                                            data[currentitem]["name"]["first"]
+                                            data[currentitem]['name']['first']
                                                     .toString() +
-                                                " " +
-                                                data[currentitem]["name"]
-                                                        ["last"]
+                                                ' ' +
+                                                data[currentitem]['name']
+                                                        ['last']
                                                     .toString(),
                                             style: TextStyle(fontSize: 18),
                                           ),
-                                          Text(data[currentitem]["phone"]
+                                          Text(data[currentitem]['phone']
                                               .toString())
                                         ],
                                       ),
@@ -117,8 +117,8 @@ class _CustomListViewState extends State<CustomListView> {
                                           child: Container(
                                               child: Column(
                                             children: <Widget>[
-                                              Text("$currentitem\43"),
-                                              Text("Popularity",
+                                              Text('$currentitem\43'),
+                                              Text('Popularity',
                                                   style: subHeadingTextStyle)
                                             ],
                                           )),
@@ -128,9 +128,9 @@ class _CustomListViewState extends State<CustomListView> {
                                           child: Container(
                                               child: Column(
                                             children: <Widget>[
-                                              Text("$currentitem\433"),
+                                              Text('$currentitem\433'),
                                               Text(
-                                                "Like",
+                                                'Like',
                                                 style: subHeadingTextStyle,
                                               )
                                             ],
@@ -141,9 +141,9 @@ class _CustomListViewState extends State<CustomListView> {
                                           child: Container(
                                               child: Column(
                                             children: <Widget>[
-                                              Text("$currentitem\4333"),
+                                              Text('$currentitem\4333'),
                                               Text(
-                                                "Followed",
+                                                'Followed',
                                                 style: subHeadingTextStyle,
                                               )
                                             ],
@@ -168,10 +168,10 @@ class _CustomListViewState extends State<CustomListView> {
                                   onPressed: () {},
                                 ),
                                 Text(
-                                  "$currentitem",
+                                  '$currentitem',
                                   style: TextStyle(fontSize: 22),
                                 ),
-                                Text("Ranking")
+                                Text('Ranking')
                               ],
                             ),
                           ),
@@ -194,13 +194,13 @@ class _CustomListViewState extends State<CustomListView> {
             children: <Widget>[
               Container(
                   height: 80,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [Colors.purpleAccent, Colors.purple],
                     ),
                   ),
                   child: Container(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                       left: 5,
                       right: 5,
                     ),
@@ -208,13 +208,14 @@ class _CustomListViewState extends State<CustomListView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         IconButton(
-                          icon: Icon(Icons.arrow_back, color: Colors.white),
+                          icon:
+                              const Icon(Icons.arrow_back, color: Colors.white),
                           onPressed: () {
                             Navigator.pop(context);
                           },
                         ),
                         IconButton(
-                            icon: Icon(Icons.menu, color: Colors.white),
+                            icon: const Icon(Icons.menu, color: Colors.white),
                             onPressed: () {})
                       ],
                     ),
@@ -223,7 +224,7 @@ class _CustomListViewState extends State<CustomListView> {
                 height: 50,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Colors.purpleAccent, Colors.purple],
+                    colors: const [Colors.purpleAccent, Colors.purple],
                   ),
                 ),
                 child: TabBar(

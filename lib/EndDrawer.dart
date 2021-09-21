@@ -7,6 +7,7 @@ class AwesomeEndDrawer extends StatefulWidget {
 }
 
 class _AwesomeEndDrawerState extends State<AwesomeEndDrawer> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: Container(
@@ -92,14 +93,14 @@ class _AwesomeEndDrawerState extends State<AwesomeEndDrawer> {
                                       Container(
                                         padding: EdgeInsets.all(10),
                                         child: Text(
-                                          "John Doe",
+                                          'John Doe',
                                           style: TextStyle(color: Colors.white),
                                         ),
                                       ),
                                       Container(
                                         padding: EdgeInsets.all(10),
                                         child: Text(
-                                          "18:50",
+                                          '18:50',
                                           style: TextStyle(color: Colors.white),
                                         ),
                                       ),
@@ -111,7 +112,7 @@ class _AwesomeEndDrawerState extends State<AwesomeEndDrawer> {
                                   child: Container(
                                     padding: EdgeInsets.all(10),
                                     child: Text(
-                                      '$SOMETEXT',
+                                      SOMETEXT,
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   ),
@@ -139,7 +140,7 @@ class _AwesomeEndDrawerState extends State<AwesomeEndDrawer> {
                     child: Padding(
                       padding: EdgeInsets.only(
                           top: (MediaQuery.of(context).size.height / 100) * 3),
-                      child: Text(
+                      child: const Text(
                         'TITLE',
                         style: TextStyle(color: Colors.white),
                       ),
@@ -161,10 +162,12 @@ class _AwesomeEndDrawerState extends State<AwesomeEndDrawer> {
             ),
           ),
         ],
+        leading: BackButton(),
+        automaticallyImplyLeading: true,
       ),
-      body: new Container(
+      body: Container(
         child: Center(
-          child: Text("Tap the Menu on Top Right"),
+          child: Text('Tap the Menu on Top Right'),
         ),
       ),
     );

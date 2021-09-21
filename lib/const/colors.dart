@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const MaterialColor beachRed = const MaterialColor(
+const MaterialColor beachRed = MaterialColor(
   0xfffe4a49,
   <int, Color>{
     50: Color(0xfffe4a49),

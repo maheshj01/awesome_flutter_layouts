@@ -2,30 +2,17 @@ import 'package:awesome_flutter_layouts/const/colors.dart';
 import 'package:awesome_flutter_layouts/widgets/picker_widget.dart';
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: beachRed,
-      ),
-      home: MyHomePage(title: 'BottomSheets'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+class BottomSheetApp extends StatefulWidget {
+  const BottomSheetApp({Key? key, this.title = 'Custom Bottom sheet example'})
+      : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _BottomSheetAppState createState() => _BottomSheetAppState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _BottomSheetAppState extends State<BottomSheetApp> {
   void _showCustomTimePicker() {
     showModalBottomSheet(
         backgroundColor: beachRed[50],
@@ -55,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'Push the Button to View the bottom Sheet:',
             ),
             Text(
-              '$time',
+              time,
               style: Theme.of(context).textTheme.headline4,
             ),
           ],

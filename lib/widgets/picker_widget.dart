@@ -27,7 +27,7 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
       },
       children: List.generate(
           inMinutes ? 60 : 24,
-          (index) => Text(inMinutes ? '${index} mins' : '$index Hr',
+          (index) => Text(inMinutes ? '$index mins' : '$index Hr',
               style: TextStyle(color: white))),
       itemExtent: 40,
     );

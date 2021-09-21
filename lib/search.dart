@@ -3,8 +3,8 @@ import 'dart:math';
 
 import 'package:awesome_flutter_layouts/bloc/userbloc.dart';
 import 'package:awesome_flutter_layouts/const/const.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import 'models/usermodel.dart';
 
@@ -23,8 +23,8 @@ class _SearchState extends State<Search> {
 
   int selectedTab = 2;
 
-  ScrollController _controller = ScrollController();
-  ScrollController _controller1 = ScrollController();
+  final ScrollController _controller = ScrollController();
+  final ScrollController _controller1 = ScrollController();
 
   var data;
 
@@ -85,7 +85,7 @@ class _SearchState extends State<Search> {
               color: materialColors[index % materialColors.length],
               image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage('${snapshot.data![index].picture}')),
+                  image: NetworkImage(snapshot.data![index].picture)),
               borderRadius: BorderRadius.circular(20),
               boxShadow: const [
                 BoxShadow(
@@ -124,13 +124,13 @@ class _SearchState extends State<Search> {
           _controller1.jumpTo(_controller1.offset - details.delta.dy);
         } else if (details.delta.dy < 0) {
           print('We are swiping down');
-          double maxScroll = _controller.position.maxScrollExtent;
-          double currentScroll = _controller.position.pixels;
-          double maxScroll1 = _controller1.position.maxScrollExtent;
-          double currentScroll1 = _controller1.position.pixels;
+          final double maxScroll = _controller.position.maxScrollExtent;
+          final double currentScroll = _controller.position.pixels;
+          final double maxScroll1 = _controller1.position.maxScrollExtent;
+          final double currentScroll1 = _controller1.position.pixels;
 
           ///lets say that we reached 99% of the screen
-          double delta =
+          final double delta =
               230; // or something else.. you have to do the math yourself
           if (maxScroll - currentScroll <= delta) {
             print('reached the end ?');
@@ -204,27 +204,27 @@ class _SearchState extends State<Search> {
   }
 
   void _searchUser(String searchQuery) {
-    List<RandomUserModel> searchResult = [];
+    final List<RandomUserModel> searchResult = [];
     userBloc.userController.sink.add(null);
     print('total users = ${totalUsers.length}'); //
     if (searchQuery.isEmpty) {
       userBloc.userController.sink.add(totalUsers);
       return;
     }
-    totalUsers.forEach((user) {
+    for (var user in totalUsers) {
       if (user.first.toLowerCase().contains(searchQuery.toLowerCase()) ||
           user.last.toLowerCase().contains(searchQuery.toLowerCase())) {
         searchResult.add(user);
       }
-    });
+    }
     userBloc.userController.sink.add(searchResult);
   }
 
   Future<void> fetchRandomUsers() async {
     final http.Response response = await http.get(Uri.parse(RANDOM_URL));
     if (response.statusCode == 200) {
-      var body = jsonDecode(response.body);
-      final Iterable list = body["results"];
+      final body = jsonDecode(response.body);
+      final Iterable list = body['results'];
       // map each json object to model and addto list and return the list of models
       totalUsers =
           list.map((model) => RandomUserModel.fromJson(model)).toList();
@@ -244,7 +244,9 @@ class _SearchState extends State<Search> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
-          leading: IconButton(icon: Icon(Icons.menu), onPressed: null),
+          leading: BackButton(
+            color: Colors.black,
+          ),
           actions: const <Widget>[
             IconButton(icon: Icon(Icons.shopping_basket), onPressed: null)
           ],
@@ -297,7 +299,7 @@ class _SearchState extends State<Search> {
                       margin: EdgeInsets.symmetric(horizontal: 10),
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
-                        '${tabBarTitle[x]}',
+                        tabBarTitle[x],
                         style: TextStyle(fontSize: 16),
                       ),
                     ),
