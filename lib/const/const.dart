@@ -1,5 +1,6 @@
 import 'package:awesome_flutter_layouts/EndDrawer.dart';
 import 'package:awesome_flutter_layouts/UserProfile.dart';
+import 'package:awesome_flutter_layouts/clipmagic.dart';
 import 'package:awesome_flutter_layouts/search.dart';
 import 'package:flutter/material.dart';
 import '../CustomListView.dart';
@@ -55,6 +56,7 @@ List<Widget> layoutList = [
   AwesomeEndDrawer(),
   Search(),
   const BottomSheetApp(),
+  const ClipPathTorchEffect()
 ];
 
 // add a title to your awesome layout as an identity this will appear in the list View in main.dart
@@ -65,6 +67,7 @@ const List layout_title = [
   'Awesome end Drawer',
   'Search As You Type',
   'BottomSheets',
+  'ClipPath torch effect'
 ];
 // getting Random user data
 const String RANDOM_URL = 'https://randomuser.me/api/?results=100';
