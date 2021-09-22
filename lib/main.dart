@@ -4,7 +4,6 @@ import 'const/const.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,8 +28,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final int _counter = 0;
-
   Future<void> _push(Widget child) async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => child));
   }
@@ -57,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     layoutList[currentitem % layoutList.length];
                 _push(child);
               },
-              leading: Icon(Icons.list),
+              leading: const Icon(Icons.list),
               title: Text(layout_title[currentitem % layout_title.length]),
             );
           },

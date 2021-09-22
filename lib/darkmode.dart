@@ -24,8 +24,8 @@ class _DarkTransitionState extends State<DarkTransition>
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1000));
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 400));
     _animationController.forward();
   }
 
