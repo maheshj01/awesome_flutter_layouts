@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
+      // darkTheme: ThemeData.dark(),
       home: const MyHomePage(title: 'Awesome Flutter Layouts'),
     );
   }

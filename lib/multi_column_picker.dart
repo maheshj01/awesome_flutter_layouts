@@ -49,6 +49,7 @@ class _BottomSheetAppState extends State<BottomSheetApp> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'Column-Picker',
         onPressed: _showCustomTimePicker,
         tooltip: 'Increment',
         child: Icon(Icons.add),

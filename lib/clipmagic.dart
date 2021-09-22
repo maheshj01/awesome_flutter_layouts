@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-
 class ClipPathTorchEffect extends StatefulWidget {
-  const ClipPathTorchEffect({Key? key,  this.title = 'Flutter Torch Effect'}) : super(key: key);
+  const ClipPathTorchEffect({Key? key, this.title = 'Flutter Torch Effect'})
+      : super(key: key);
   final String title;
 
   @override
@@ -98,6 +98,7 @@ class _CounterAppState extends State<CounterApp> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'Clip Magic',
         onPressed: () {
           setState(() {
             counter += 1;
