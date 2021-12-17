@@ -2,7 +2,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class DarkTransition extends StatefulWidget {
-  DarkTransition({Key? key, this.title = 'Dark Transition'}) : super(key: key);
+  const DarkTransition({Key? key, this.title = 'Dark Transition'})
+      : super(key: key);
 
   final String title;
 
@@ -14,7 +15,6 @@ class _DarkTransitionState extends State<DarkTransition>
     with SingleTickerProviderStateMixin {
   @override
   void dispose() {
-    // TODO: implement dispose
     _darkNotifier.dispose();
     super.dispose();
   }
@@ -24,13 +24,13 @@ class _DarkTransitionState extends State<DarkTransition>
   @override
   void initState() {
     super.initState();
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 400));
-    _animationController.forward();
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 400));
   }
 
-  double diagonal(Size size) {
-    return pow(pow(size.width, 2) + pow(size.width, 2), 0.5) as double;
+  double _radius(Size size) {
+    final maxVal = max(size.width, size.height);
+    return maxVal * 1.5;
   }
 
   late AnimationController _animationController;
@@ -46,11 +46,26 @@ class _DarkTransitionState extends State<DarkTransition>
       return ThemeData.light();
   }
 
+  void _updateCoOrdinates() {
+    final RenderBox box = key.currentContext?.findRenderObject() as RenderBox;
+    final Offset position = box.localToGlobal(Offset.zero);
+    x = position.dx;
+    y = position.dy;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      _updateCoOrdinates();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     isDark = _darkNotifier.value;
     final size = MediaQuery.of(context).size;
-    final radius = diagonal(size);
+    final radius = _radius(size);
 
     Widget _body(int index) {
       return ValueListenableBuilder<bool>(
@@ -73,7 +88,7 @@ class _DarkTransitionState extends State<DarkTransition>
                       ),
                       Text(
                         !_darkNotifier.value ? 'DarkMode' : 'LightMode',
-                        style: TextStyle(fontSize: 30),
+                        style: const TextStyle(fontSize: 30),
                       ),
                     ],
                   ),
@@ -83,13 +98,16 @@ class _DarkTransitionState extends State<DarkTransition>
                   key: index == 1 ? key : null,
                   onPressed: () {
                     _darkNotifier.value = !_darkNotifier.value;
-                    final RenderBox box =
-                        key.currentContext!.findRenderObject() as RenderBox;
-                    Offset position = box.localToGlobal(Offset.zero);
-                    x = position.dx;
-                    y = position.dy;
-                    _animationController.reset();
-                    _animationController.forward();
+                    if (x == 0 || y == 0) {
+                      // prevent rerecomputing
+                      _updateCoOrdinates();
+                    }
+                    if (isDark)
+                      _animationController.reverse();
+                    else {
+                      _animationController.reset();
+                      _animationController.forward();
+                    }
                     isDark = _darkNotifier.value;
                   },
                   // tooltip: 'Increment',
@@ -119,10 +137,9 @@ class _DarkTransitionState extends State<DarkTransition>
 }
 
 class CircularClipper extends CustomClipper<Path> {
+  const CircularClipper(this.radius, this.center);
   final double radius;
   final Offset center;
-
-  CircularClipper(this.radius, this.center);
 
   @override
   Path getClip(Size size) {
