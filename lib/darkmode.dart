@@ -61,20 +61,21 @@ class _DarkTransitionState extends State<DarkTransition>
     });
   }
 
+  bool innerTheme = false;
+  bool outerTheme = true;
   @override
   Widget build(BuildContext context) {
     isDark = _darkNotifier.value;
     final size = MediaQuery.of(context).size;
     final radius = _radius(size);
-
+    innerTheme = !isDark;
+    outerTheme = isDark;
     Widget _body(int index) {
       return ValueListenableBuilder<bool>(
           valueListenable: _darkNotifier,
           builder: (BuildContext context, bool isDark, Widget? child) {
             return Theme(
-              data: index == 2
-                  ? getTheme(_darkNotifier.value)
-                  : getTheme(!_darkNotifier.value),
+              data: index == 2 ? getTheme(innerTheme) : getTheme(outerTheme),
               child: Scaffold(
                 appBar: AppBar(
                   title: Text(widget.title),
@@ -97,18 +98,21 @@ class _DarkTransitionState extends State<DarkTransition>
                   heroTag: null,
                   key: index == 1 ? key : null,
                   onPressed: () {
-                    _darkNotifier.value = !_darkNotifier.value;
                     if (x == 0 || y == 0) {
                       // prevent rerecomputing
                       _updateCoOrdinates();
                     }
-                    if (isDark)
+                    isDark = _darkNotifier.value;
+                    if (isDark) {
                       _animationController.reverse();
-                    else {
+                      _darkNotifier.value = false;
+                      outerTheme = false;
+                    } else {
                       _animationController.reset();
                       _animationController.forward();
+                      _darkNotifier.value = true;
+                      innerTheme = true;
                     }
-                    isDark = _darkNotifier.value;
                   },
                   // tooltip: 'Increment',
                   child: Icon(_darkNotifier.value
