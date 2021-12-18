@@ -1,3 +1,4 @@
+import 'package:awesome_flutter_layouts/darkmode.dart';
 import 'package:flutter/material.dart';
 import 'const/const.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      // darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData.dark(),
       home: const MyHomePage(title: 'Awesome Flutter Layouts'),
     );
   }
@@ -32,32 +33,53 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => child));
   }
 
+  bool isDark = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: ListView.separated(
-          itemCount: layout_title.length,
-          separatorBuilder: (BuildContext context, int currentitem) {
-            return Container(
-              width: double.infinity,
-              height: 0.1,
-              color: Colors.black,
-            );
-          },
-          itemBuilder: (BuildContext context, int currentitem) {
-            return ListTile(
-              onTap: () {
-                final Widget child =
-                    layoutList[currentitem % layoutList.length];
-                _push(child);
+    final mediaQuery = MediaQuery.of(context);
+    return DarkTransition(
+      isDark: isDark,
+      offset: Offset(mediaQuery.size.width - 50, 40),
+      duration: const Duration(milliseconds: 800),
+      childBuilder: (context, int index, GlobalKey _key) {
+        return Scaffold(
+            appBar: AppBar(
+              title: Text(widget.title),
+              actions: [
+                IconButton(
+                  icon: isDark
+                      ? const Icon(Icons.wb_sunny)
+                      : const Icon(Icons.brightness_2),
+                  onPressed: () {
+                    setState(() {
+                      isDark = !isDark;
+                    });
+                  },
+                )
+              ],
+            ),
+            body: ListView.separated(
+              itemCount: layout_title.length,
+              separatorBuilder: (BuildContext context, int currentitem) {
+                return Container(
+                  width: double.infinity,
+                  height: 0.1,
+                  color: Colors.black,
+                );
               },
-              leading: const Icon(Icons.list),
-              title: Text(layout_title[currentitem % layout_title.length]),
-            );
-          },
-        ));
+              itemBuilder: (BuildContext context, int currentitem) {
+                return ListTile(
+                  onTap: () {
+                    final Widget child =
+                        layoutList[currentitem % layoutList.length];
+                    _push(child);
+                  },
+                  leading: const Icon(Icons.list),
+                  title: Text(layout_title[currentitem % layout_title.length]),
+                );
+              },
+            ));
+      },
+    );
   }
 }
