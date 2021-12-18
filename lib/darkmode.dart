@@ -61,8 +61,8 @@ class _DarkTransitionState extends State<DarkTransition>
     });
   }
 
-  bool innerTheme = false;
-  bool outerTheme = true;
+  bool innerTheme = true;
+  bool outerTheme = false;
   @override
   Widget build(BuildContext context) {
     isDark = _darkNotifier.value;
@@ -88,7 +88,7 @@ class _DarkTransitionState extends State<DarkTransition>
                         'You have pushed the button this many times:',
                       ),
                       Text(
-                        !_darkNotifier.value ? 'DarkMode' : 'LightMode',
+                        isDark ? 'DarkMode' : 'LightMode',
                         style: const TextStyle(fontSize: 30),
                       ),
                     ],
@@ -129,11 +129,11 @@ class _DarkTransitionState extends State<DarkTransition>
         builder: (BuildContext context, Widget? child) {
           return Stack(
             children: [
-              _body(2),
+              _body(1),
               ClipPath(
                   clipper: CircularClipper(_animationController.value * radius,
                       Offset(x + 20, y + 20)),
-                  child: _body(1)),
+                  child: _body(2)),
             ],
           );
         });
