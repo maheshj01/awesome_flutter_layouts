@@ -62,6 +62,8 @@ class _DarkBuilderState extends State<DarkBuilder> {
   }
 }
 
+/// a widget that will transition between two widgets
+/// with the telegram effect
 class DarkTransition extends StatefulWidget {
   DarkTransition(
       {required this.childBuilder,
@@ -114,8 +116,8 @@ class _DarkTransitionState extends State<DarkTransition>
   double x = 0;
   double y = 0;
   bool isDark = false;
-  bool innerTheme = true;
-  bool outerTheme = false;
+  // bool isBottomThemeDark = true;
+  bool isDarkVisible = false;
   late double radius;
   Offset position = Offset.zero;
 
@@ -134,12 +136,10 @@ class _DarkTransitionState extends State<DarkTransition>
       if (isDark) {
         _animationController.reverse();
         _darkNotifier.value = false;
-        outerTheme = false;
       } else {
         _animationController.reset();
         _animationController.forward();
         _darkNotifier.value = true;
-        innerTheme = true;
       }
       position = widget.offset;
     }
@@ -174,7 +174,9 @@ class _DarkTransitionState extends State<DarkTransition>
           valueListenable: _darkNotifier,
           builder: (BuildContext context, bool isDark, Widget? child) {
             return Theme(
-                data: index == 2 ? getTheme(innerTheme) : getTheme(outerTheme),
+                data: index == 2
+                    ? getTheme(!isDarkVisible)
+                    : getTheme(isDarkVisible),
                 child: widget.childBuilder(context, index, GlobalKey()));
           });
     }
