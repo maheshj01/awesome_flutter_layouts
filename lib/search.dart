@@ -31,19 +31,19 @@ class _SearchState extends State<Search> {
   Future<void> getFilteredList() async {}
 
   Widget _acquaintance() {
-    return Center(
+    return const Center(
       child: Text('_acquaintance will apear here'),
     );
   }
 
   Widget _friends() {
-    return Center(
+    return const Center(
       child: Text('Friends will appear here '),
     );
   }
 
   Widget _colleagues() {
-    return Center(
+    return const Center(
       child: Text('Colleagues will appear here'),
     );
   }
@@ -54,10 +54,10 @@ class _SearchState extends State<Search> {
         builder: (BuildContext buildContext,
             AsyncSnapshot<List<RandomUserModel>?> snapshot) {
           if (snapshot == null) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
           return snapshot.connectionState == ConnectionState.waiting
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : _randomUsers(snapshot: snapshot);
@@ -77,43 +77,56 @@ class _SearchState extends State<Search> {
 
   Widget _cardWidget(
       AsyncSnapshot<List<RandomUserModel>?> snapshot, int index) {
-    return Stack(fit: StackFit.expand, children: <Widget>[
-      Opacity(
-        opacity: 0.7,
-        child: Container(
-          decoration: BoxDecoration(
-              color: materialColors[index % materialColors.length],
-              image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(snapshot.data![index].picture)),
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: const [
-                BoxShadow(
-                    blurRadius: 2, offset: Offset(1, 0.5), spreadRadius: 0.5)
-              ]),
-          margin: EdgeInsets.only(left: 5, bottom: 10, top: 10),
-          alignment: Alignment.center,
-        ),
-      ),
-      Container(
-        alignment: Alignment.center,
-        child: Text(
-          '${snapshot.data![index].first} ${snapshot.data![index].last}',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
+    return Container(
+      decoration: BoxDecoration(boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.4),
+          blurRadius: 5.0, // soften the shadow
+          spreadRadius: 1.0, //extend the shadow
+          offset: const Offset(
+            2.0, // Move to right 10  horizontally
+            2.0, // Move to bottom 10 Vertically
           ),
-          textAlign: TextAlign.center,
+        )
+      ]),
+      child: Stack(fit: StackFit.expand, children: <Widget>[
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(snapshot.data![index].picture)),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          margin: const EdgeInsets.only(left: 5, bottom: 10, top: 10),
         ),
-      )
-    ]);
+        Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [Colors.black.withOpacity(0.8), Colors.transparent]),
+          ),
+        ),
+        Container(
+          alignment: Alignment.bottomCenter,
+          padding: const EdgeInsets.only(bottom: 24),
+          child: Text(
+            '${snapshot.data![index].first} ${snapshot.data![index].last}',
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ]),
+    );
   }
 
   Widget _randomUsers(
       {required AsyncSnapshot<List<RandomUserModel>?> snapshot}) {
     return GestureDetector(
       onPanUpdate: (details) {
-        //print(details.globalPosition.dy);
         if (details.delta.dy > 0) {
           if (_controller.offset < 0) {
             _controller.jumpTo(0);
@@ -123,23 +136,18 @@ class _SearchState extends State<Search> {
           _controller.jumpTo(_controller.offset - details.delta.dy);
           _controller1.jumpTo(_controller1.offset - details.delta.dy);
         } else if (details.delta.dy < 0) {
-          print('We are swiping down');
           final double maxScroll = _controller.position.maxScrollExtent;
           final double currentScroll = _controller.position.pixels;
           final double maxScroll1 = _controller1.position.maxScrollExtent;
           final double currentScroll1 = _controller1.position.pixels;
 
           ///lets say that we reached 99% of the screen
-          final double delta =
+          const double delta =
               230; // or something else.. you have to do the math yourself
           if (maxScroll - currentScroll <= delta) {
-            print('reached the end ?');
-
             _controller.jumpTo(_controller.position.maxScrollExtent);
           }
           if (maxScroll1 - currentScroll1 <= delta) {
-            print('reached the end ?');
-
             _controller1.jumpTo(_controller1.position.maxScrollExtent);
           }
 
@@ -148,44 +156,51 @@ class _SearchState extends State<Search> {
         }
       },
       child: Container(
-        color: Colors.cyan[50], //background
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: Row(
           children: <Widget>[
             Expanded(
-              child: ListView.builder(
-                controller: _controller,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: snapshot.data!.length,
-                itemBuilder: (BuildContext context, int index) {
-                  if (index.isEven) {
-                    return Container(
-                        height: 200, child: _cardWidget(snapshot, index));
-                  } else {
-                    return SizedBox();
-                  }
-                },
+              child: ScrollConfiguration(
+                behavior:
+                    ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                child: ListView.builder(
+                  controller: _controller,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    if (index.isEven) {
+                      return Container(
+                          height: 200, child: _cardWidget(snapshot, index));
+                    } else {
+                      return const SizedBox();
+                    }
+                  },
+                ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Expanded(
-              child: ListView.builder(
-                controller: _controller1,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: snapshot.data!.length,
-                itemBuilder: (BuildContext context, int index) {
-                  // if (index == random || index == 1) {
-                  //   return _showAd();
-                  // }
-                  if (index.isOdd) {
-                    return Container(
-                        height: 300, child: _cardWidget(snapshot, index));
-                  } else {
-                    return SizedBox();
-                  }
-                },
+              child: ScrollConfiguration(
+                behavior:
+                    ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                child: ListView.builder(
+                  controller: _controller1,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    if (index == random || index == 1) {
+                      return _showAd();
+                    }
+                    if (index.isOdd) {
+                      return Container(
+                          height: 300, child: _cardWidget(snapshot, index));
+                    } else {
+                      return const SizedBox();
+                    }
+                  },
+                ),
               ),
             ),
           ],
@@ -232,91 +247,107 @@ class _SearchState extends State<Search> {
     }
   }
 
+  Widget _buildBody() {
+    return index == 0
+        ? _friends()
+        : index == 1
+            ? usersWidget()
+            : index == 2
+                ? _acquaintance()
+                : _colleagues();
+  }
+
   late int random;
   List<RandomUserModel> totalUsers = [];
   Random rng = Random();
+  int index = 0;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.0,
-          leading: BackButton(
-            color: Colors.black,
+    return Scaffold(
+      appBar: AppBar(
+        leading: const BackButton(
+          color: Colors.black,
+        ),
+        actions: const <Widget>[
+          IconButton(icon: Icon(Icons.shopping_basket), onPressed: null)
+        ],
+      ),
+      body: Column(
+        children: <Widget>[
+          const SizedBox(
+            height: 20,
           ),
-          actions: const <Widget>[
-            IconButton(icon: Icon(Icons.shopping_basket), onPressed: null)
-          ],
-        ),
-        body: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 20,
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              onChanged: (text) => _searchUser(text),
+              decoration: InputDecoration(
+                  suffixIcon: const Icon(Icons.search),
+                  hintText: 'Search',
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  border: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(width: 3.1, color: Colors.red),
+                      borderRadius: BorderRadius.circular(30))),
             ),
-            Container(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                onChanged: (text) => _searchUser(text),
-                decoration: InputDecoration(
-                    suffixIcon: Icon(Icons.search),
-                    hintText: 'Search',
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(width: 3.1, color: Colors.red),
-                        borderRadius: BorderRadius.circular(30))),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Tabs(
+              index: index,
+              list: tabBarTitle,
+              onIndexChange: (x) {
+                setState(() {
+                  index = x;
+                });
+                if (x == 1) {
+                  random = rng.nextInt(100);
+                  fetchRandomUsers();
+                }
+              },
+            ),
+          ),
+          Expanded(child: _buildBody())
+        ],
+      ),
+    );
+  }
+}
+
+class Tabs extends StatelessWidget {
+  Tabs(
+      {Key? key,
+      required this.list,
+      required this.onIndexChange,
+      required this.index})
+      : super(key: key);
+  final List<String> list;
+  Function(int) onIndexChange;
+  int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: list.length,
+      initialIndex: index,
+      child: TabBar(
+        // indicatorColor: primaryColorGreen,
+        indicatorSize: TabBarIndicatorSize.label,
+        onTap: (index) {
+          onIndexChange(index);
+        },
+        isScrollable: true,
+        tabs: [
+          for (int i = 0; i < list.length; i++)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Text(
+                '${list[i]}',
+                style: const TextStyle(fontSize: 16),
               ),
             ),
-            Container(
-              height: 50,
-              child: ListView.builder(
-                physics: ClampingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                itemCount: tabBarTitle.length,
-                itemBuilder: (BuildContext context, int x) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedTab = x;
-                      });
-                      if (x == 1) {
-                        random = rng.nextInt(100);
-                        print('random = $random');
-                        fetchRandomUsers();
-                      }
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: x == selectedTab
-                                      ? Colors.green
-                                      : Colors.white))),
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.symmetric(horizontal: 10),
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        tabBarTitle[x],
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            Expanded(
-                child: selectedTab == 0
-                    ? _friends()
-                    : selectedTab == 1
-                        ? usersWidget()
-                        : selectedTab == 2
-                            ? _acquaintance()
-                            : _colleagues())
-          ],
-        ),
+        ],
       ),
     );
   }
