@@ -28,7 +28,7 @@ class _DarkBuilderState extends State<DarkBuilder> {
         isDark: isDark,
         offset: Offset(mediaQuery.size.width - 20, mediaQuery.size.height - 20),
         duration: const Duration(milliseconds: 800),
-        childBuilder: (context, int index, GlobalKey _key) {
+        childBuilder: (context, int index) {
           return Scaffold(
             appBar: AppBar(
               title: Text(widget.title),
@@ -46,9 +46,8 @@ class _DarkBuilderState extends State<DarkBuilder> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     'You have pushed the button this many times:',
-                    key: _key,
                   ),
                   Text(
                     isDark ? 'DarkMode' : 'LightMode',
@@ -75,11 +74,23 @@ class DarkTransition extends StatefulWidget {
       this.isDark = false})
       : super(key: key);
 
-  final Widget Function(BuildContext, int, GlobalKey) childBuilder;
-  bool isDark;
+  /// Deinfe the widget that will be transitioned
+  /// int index is either 1 or 2 to identify widgets, 2 is the top widget
+  final Widget Function(BuildContext, int) childBuilder;
+
+  /// the current state of the theme
+  final bool isDark;
+
+  /// optional animation controller to controll the animation
   AnimationController? themeController;
+
+  /// centeral point of the circular transition
   late Offset offset;
+
+  /// optional radius of the circle defaults to [max(height,width)*1.5])
   double? radius;
+
+  /// duration of animation defaults to 400ms
   final Duration? duration;
 
   @override
@@ -177,7 +188,7 @@ class _DarkTransitionState extends State<DarkTransition>
                 data: index == 2
                     ? getTheme(!isDarkVisible)
                     : getTheme(isDarkVisible),
-                child: widget.childBuilder(context, index, GlobalKey()));
+                child: widget.childBuilder(context, index));
           });
     }
 

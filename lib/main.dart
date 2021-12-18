@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
       isDark: isDark,
       offset: Offset(mediaQuery.size.width - 50, 40),
       duration: const Duration(milliseconds: 800),
-      childBuilder: (context, int index, GlobalKey _key) {
+      childBuilder: (context, int index) {
         return Scaffold(
             appBar: AppBar(
               title: Text(widget.title),
