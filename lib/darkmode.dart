@@ -1,11 +1,84 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-class DarkTransition extends StatefulWidget {
-  const DarkTransition({Key? key, this.title = 'Dark Transition'})
+class DarkBuilder extends StatefulWidget {
+  const DarkBuilder({Key? key, this.title = 'DarkTransition'})
       : super(key: key);
 
   final String title;
+
+  @override
+  _DarkBuilderState createState() => _DarkBuilderState();
+}
+
+class _DarkBuilderState extends State<DarkBuilder> {
+  bool isDark = false;
+  // void _updateCoOrdinates() {
+  //   final RenderBox box = key.currentContext?.findRenderObject() as RenderBox;
+  //   position = box.localToGlobal(Offset.zero);
+  //   setState(() {});
+  // }
+
+  GlobalKey key = GlobalKey();
+  Offset position = Offset.zero;
+  @override
+  Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    return DarkTransition(
+        isDark: isDark,
+        offset: Offset(mediaQuery.size.width - 20, mediaQuery.size.height - 20),
+        duration: const Duration(milliseconds: 800),
+        childBuilder: (context, int index, GlobalKey _key) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(widget.title),
+            ),
+            floatingActionButton: FloatingActionButton(
+              heroTag: 'item $index',
+              onPressed: () {
+                setState(() {
+                  isDark = !isDark;
+                });
+              },
+              child: const Icon(Icons.add),
+            ),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'You have pushed the button this many times:',
+                    key: _key,
+                  ),
+                  Text(
+                    isDark ? 'DarkMode' : 'LightMode',
+                    style: const TextStyle(fontSize: 30),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+}
+
+class DarkTransition extends StatefulWidget {
+  DarkTransition(
+      {required this.childBuilder,
+      Key? key,
+      this.offset = Offset.zero,
+      this.themeController,
+      this.radius,
+      this.duration = const Duration(milliseconds: 400),
+      this.isDark = false})
+      : super(key: key);
+
+  final Widget Function(BuildContext, int, GlobalKey) childBuilder;
+  bool isDark;
+  AnimationController? themeController;
+  late Offset offset;
+  double? radius;
+  final Duration? duration;
 
   @override
   _DarkTransitionState createState() => _DarkTransitionState();
@@ -24,8 +97,12 @@ class _DarkTransitionState extends State<DarkTransition>
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 400));
+    if (widget.themeController == null) {
+      _animationController =
+          AnimationController(vsync: this, duration: widget.duration);
+    } else {
+      _animationController = widget.themeController!;
+    }
   }
 
   double _radius(Size size) {
@@ -34,10 +111,13 @@ class _DarkTransitionState extends State<DarkTransition>
   }
 
   late AnimationController _animationController;
-  GlobalKey key = GlobalKey();
   double x = 0;
   double y = 0;
   bool isDark = false;
+  bool innerTheme = true;
+  bool outerTheme = false;
+  late double radius;
+  Offset position = Offset.zero;
 
   ThemeData getTheme(bool dark) {
     if (dark)
@@ -46,81 +126,56 @@ class _DarkTransitionState extends State<DarkTransition>
       return ThemeData.light();
   }
 
-  void _updateCoOrdinates() {
-    final RenderBox box = key.currentContext?.findRenderObject() as RenderBox;
-    final Offset position = box.localToGlobal(Offset.zero);
-    x = position.dx;
-    y = position.dy;
+  @override
+  void didUpdateWidget(DarkTransition oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _darkNotifier.value = widget.isDark;
+    if (widget.isDark != oldWidget.isDark) {
+      if (isDark) {
+        _animationController.reverse();
+        _darkNotifier.value = false;
+        outerTheme = false;
+      } else {
+        _animationController.reset();
+        _animationController.forward();
+        _darkNotifier.value = true;
+        innerTheme = true;
+      }
+      position = widget.offset;
+    }
+    if (widget.radius != oldWidget.radius) {
+      _updateRadius();
+    }
+    if (widget.duration != oldWidget.duration) {
+      _animationController.duration = widget.duration;
+    }
   }
 
   @override
   void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      _updateCoOrdinates();
-    });
+    _updateRadius();
   }
 
-  bool innerTheme = true;
-  bool outerTheme = false;
+  void _updateRadius() {
+    final size = MediaQuery.of(context).size;
+    if (widget.radius == null)
+      radius = _radius(size);
+    else
+      radius = widget.radius!;
+  }
+
   @override
   Widget build(BuildContext context) {
     isDark = _darkNotifier.value;
-    final size = MediaQuery.of(context).size;
-    final radius = _radius(size);
-    innerTheme = !isDark;
-    outerTheme = isDark;
     Widget _body(int index) {
       return ValueListenableBuilder<bool>(
           valueListenable: _darkNotifier,
           builder: (BuildContext context, bool isDark, Widget? child) {
             return Theme(
-              data: index == 2 ? getTheme(innerTheme) : getTheme(outerTheme),
-              child: Scaffold(
-                appBar: AppBar(
-                  title: Text(widget.title),
-                ),
-                body: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      const Text(
-                        'You have pushed the button this many times:',
-                      ),
-                      Text(
-                        isDark ? 'DarkMode' : 'LightMode',
-                        style: const TextStyle(fontSize: 30),
-                      ),
-                    ],
-                  ),
-                ),
-                floatingActionButton: FloatingActionButton(
-                  heroTag: null,
-                  key: index == 1 ? key : null,
-                  onPressed: () {
-                    if (x == 0 || y == 0) {
-                      // prevent rerecomputing
-                      _updateCoOrdinates();
-                    }
-                    isDark = _darkNotifier.value;
-                    if (isDark) {
-                      _animationController.reverse();
-                      _darkNotifier.value = false;
-                      outerTheme = false;
-                    } else {
-                      _animationController.reset();
-                      _animationController.forward();
-                      _darkNotifier.value = true;
-                      innerTheme = true;
-                    }
-                  },
-                  // tooltip: 'Increment',
-                  child: Icon(_darkNotifier.value
-                      ? Icons.wb_sunny_outlined
-                      : Icons.bubble_chart),
-                ),
-              ),
-            );
+                data: index == 2 ? getTheme(innerTheme) : getTheme(outerTheme),
+                child: widget.childBuilder(context, index, GlobalKey()));
           });
     }
 
@@ -131,8 +186,8 @@ class _DarkTransitionState extends State<DarkTransition>
             children: [
               _body(1),
               ClipPath(
-                  clipper: CircularClipper(_animationController.value * radius,
-                      Offset(x + 20, y + 20)),
+                  clipper: CircularClipper(
+                      _animationController.value * radius, position),
                   child: _body(2)),
             ],
           );
@@ -147,7 +202,7 @@ class CircularClipper extends CustomClipper<Path> {
 
   @override
   Path getClip(Size size) {
-    Path path = Path();
+    final Path path = Path();
     path.addOval(Rect.fromCircle(radius: radius, center: center));
     return path;
   }

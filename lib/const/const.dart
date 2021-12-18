@@ -58,7 +58,7 @@ List<Widget> layoutList = [
   Search(),
   const BottomSheetApp(),
   const ClipPathTorchEffect(),
-  DarkTransition()
+  const DarkBuilder()
 ];
 
 // add a title to your awesome layout as an identity this will appear in the list View in main.dart
