@@ -64,7 +64,7 @@ class _DarkBuilderState extends State<DarkBuilder> {
 /// a widget that will transition between two widgets
 /// with the telegram effect
 class DarkTransition extends StatefulWidget {
-  DarkTransition(
+  const DarkTransition(
       {required this.childBuilder,
       Key? key,
       this.offset = Offset.zero,
@@ -82,13 +82,13 @@ class DarkTransition extends StatefulWidget {
   final bool isDark;
 
   /// optional animation controller to controll the animation
-  AnimationController? themeController;
+  final AnimationController? themeController;
 
   /// centeral point of the circular transition
-  late Offset offset;
+  final Offset offset;
 
   /// optional radius of the circle defaults to [max(height,width)*1.5])
-  double? radius;
+  final double? radius;
 
   /// duration of animation defaults to 400ms
   final Duration? duration;
