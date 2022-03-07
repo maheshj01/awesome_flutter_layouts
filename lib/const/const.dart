@@ -2,6 +2,7 @@ import 'package:awesome_flutter_layouts/EndDrawer.dart';
 import 'package:awesome_flutter_layouts/UserProfile.dart';
 import 'package:awesome_flutter_layouts/clipmagic.dart';
 import 'package:awesome_flutter_layouts/darkmode.dart';
+import 'package:awesome_flutter_layouts/demos/clock/pages/home_main.dart';
 import 'package:awesome_flutter_layouts/search.dart';
 import 'package:flutter/material.dart';
 import '../CustomListView.dart';
@@ -58,7 +59,8 @@ List<Widget> layoutList = [
   Search(),
   const BottomSheetApp(),
   const ClipPathTorchEffect(),
-  const DarkBuilder()
+  const DarkBuilder(),
+  MyHomePage(),
 ];
 
 // add a title to your awesome layout as an identity this will appear in the list View in main.dart
@@ -70,7 +72,8 @@ const List layout_title = [
   'Search As You Type',
   'BottomSheets',
   'ClipPath torch effect',
-  'Dark Transition'
+  'Dark Transition',
+  'Clock Store'
 ];
 // getting Random user data
 const String RANDOM_URL = 'https://randomuser.me/api/?results=100';
