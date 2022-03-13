@@ -14,7 +14,7 @@ class _ClipPathTorchEffectState extends State<ClipPathTorchEffect> {
     _offsetNotifier.value = Offset(details.position.dx, details.position.dy);
   }
 
-  final _offsetNotifier = ValueNotifier<Offset>(Offset(100, 100));
+  final _offsetNotifier = ValueNotifier<Offset>(const Offset(100, 100));
 
   @override
   void dispose() {
@@ -105,7 +105,7 @@ class _CounterAppState extends State<CounterApp> {
           });
         },
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

@@ -17,7 +17,7 @@ class ClockBarState extends State<ClockBar> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        widget.leading ?? const BackButton(),
+        widget.leading ?? const SizedBox(),
         widget.title ?? const SizedBox(),
         widget.trailing ?? const SizedBox(),
       ],

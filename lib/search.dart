@@ -66,12 +66,12 @@ class _SearchState extends State<Search> {
 
   Widget _showAd() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       height: 200,
       decoration: BoxDecoration(
           color: materialColors[5], borderRadius: BorderRadius.circular(20)),
       alignment: Alignment.center,
-      child: Text('Ad'),
+      child: const Text('Ad'),
     );
   }
 
@@ -226,7 +226,7 @@ class _SearchState extends State<Search> {
       userBloc.userController.sink.add(totalUsers);
       return;
     }
-    for (var user in totalUsers) {
+    for (final user in totalUsers) {
       if (user.first.toLowerCase().contains(searchQuery.toLowerCase()) ||
           user.last.toLowerCase().contains(searchQuery.toLowerCase())) {
         searchResult.add(user);
@@ -343,7 +343,7 @@ class Tabs extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Text(
-                '${list[i]}',
+                list[i],
                 style: const TextStyle(fontSize: 16),
               ),
             ),

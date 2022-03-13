@@ -48,30 +48,30 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Custom Time Picker',
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontWeight: FontWeight.w500, fontSize: 20),
                 ),
                 IconButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.clear,
                     color: Colors.white,
                   ),
                 )
               ],
             ),
-            Text(
+            const Text(
               'Scroll the list to pick the time.',
             ),
             Padding(
-                padding: EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 20.0),
                 child: RichText(
                   text: TextSpan(
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                       children: [
-                        TextSpan(
+                        const TextSpan(
                           text: 'Selected: ',
                         ),
                         TextSpan(

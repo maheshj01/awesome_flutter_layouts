@@ -21,8 +21,9 @@ class Circle extends StatelessWidget {
 }
 
 class LeadingIconBuilder extends StatelessWidget {
-  const LeadingIconBuilder({Key? key, this.onTap}) : super(key: key);
   final Function? onTap;
+
+  const LeadingIconBuilder({Key? key, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +71,8 @@ class KIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => onTap!.call(),
+    return InkWell(
+      onTap: () => onTap!(),
       child: Stack(
         children: [
           Padding(
@@ -83,7 +84,7 @@ class KIcon extends StatelessWidget {
               decoration: BoxDecoration(
                   color: color,
                   boxShadow: [shadowLight],
-                  borderRadius: BorderRadius.circular(size_sm_4 * 2.5)),
+                  borderRadius: BorderRadius.circular(size_sm_4 * 2)),
               padding: const EdgeInsets.all(size_sm_4 * 2),
               child: icon,
             ),

@@ -34,9 +34,9 @@ class _CustomListViewState extends State<CustomListView> {
 
   Widget designerTab() {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 10),
+      padding: const EdgeInsets.only(left: 10, right: 10),
       child: isLoading == true
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
@@ -51,14 +51,14 @@ class _CustomListViewState extends State<CustomListView> {
                       gradient: LinearGradient(
                           colors: colors[currentitem % colors.length]),
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                             color: Colors.black54,
                             blurRadius: 3.5,
                             offset: Offset(1.0, 2.0)),
                       ],
                     ),
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                         top: 10, left: 20, right: 20, bottom: 10),
                     height: MediaQuery.of(context).size.height / 4.5,
                     child: Row(
@@ -68,7 +68,7 @@ class _CustomListViewState extends State<CustomListView> {
                           flex: 4,
                           child: Container(
                             alignment: Alignment.topLeft,
-                            margin: EdgeInsets.only(left: 20, top: 15),
+                            margin: const EdgeInsets.only(left: 20, top: 15),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(
                                   data[currentitem]['picture']['medium']),
@@ -81,8 +81,8 @@ class _CustomListViewState extends State<CustomListView> {
                           flex: 9,
                           child: Container(
                             alignment: Alignment.center,
-                            margin: EdgeInsets.all(5),
-                            padding: EdgeInsets.only(top: 20, left: 5),
+                            margin: const EdgeInsets.all(5),
+                            padding: const EdgeInsets.only(top: 20, left: 5),
                             child: Column(
                               children: <Widget>[
                                 Expanded(
@@ -100,7 +100,7 @@ class _CustomListViewState extends State<CustomListView> {
                                                 data[currentitem]['name']
                                                         ['last']
                                                     .toString(),
-                                            style: TextStyle(fontSize: 18),
+                                            style: const TextStyle(fontSize: 18),
                                           ),
                                           Text(data[currentitem]['phone']
                                               .toString())
@@ -164,14 +164,14 @@ class _CustomListViewState extends State<CustomListView> {
                             child: Column(
                               children: <Widget>[
                                 IconButton(
-                                  icon: Icon(Icons.more_horiz),
+                                  icon: const Icon(Icons.more_horiz),
                                   onPressed: () {},
                                 ),
                                 Text(
                                   '$currentitem',
-                                  style: TextStyle(fontSize: 22),
+                                  style: const TextStyle(fontSize: 22),
                                 ),
-                                Text('Ranking')
+                                const Text('Ranking')
                               ],
                             ),
                           ),
@@ -222,9 +222,9 @@ class _CustomListViewState extends State<CustomListView> {
                   )),
               Container(
                 height: 50,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
-                    colors: const [Colors.purpleAccent, Colors.purple],
+                    colors: [Colors.purpleAccent, Colors.purple],
                   ),
                 ),
                 child: TabBar(
@@ -241,12 +241,12 @@ class _CustomListViewState extends State<CustomListView> {
                     Container(
                       color: Colors.green,
                       alignment: Alignment.center,
-                      child: Text('Yet to Build'),
+                      child: const Text('Yet to Build'),
                     ),
                     Container(
                       color: Colors.red,
                       alignment: Alignment.center,
-                      child: Text('Build something Awesome'),
+                      child: const Text('Build something Awesome'),
                     ),
                   ],
                 ),

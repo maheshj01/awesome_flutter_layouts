@@ -28,7 +28,7 @@ class _UserProfileState extends State<UserProfile> {
                 flex: 1,
                 child: Container(
                   width: double.infinity,
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Card(
                       elevation: 1.5,
                       child: Column(
@@ -38,11 +38,11 @@ class _UserProfileState extends State<UserProfile> {
                             child: Container(
                               height: 150,
                               width: 150,
-                              margin: EdgeInsets.only(top: 10),
-                              decoration: BoxDecoration(
+                              margin: const EdgeInsets.only(top: 10),
+                              decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.orangeAccent),
-                              padding: EdgeInsets.all(5),
+                              padding: const EdgeInsets.all(5),
                               child: CircleAvatar(
                                 minRadius: 18,
                                 backgroundColor: Colors.white,
@@ -57,7 +57,7 @@ class _UserProfileState extends State<UserProfile> {
                             flex: 1,
                             child: Container(
                               alignment: Alignment.center,
-                              child: Text(
+                              child: const Text(
                                 'Mr Hudson',
                                 style: TextStyle(fontSize: 20),
                               ),
@@ -66,7 +66,7 @@ class _UserProfileState extends State<UserProfile> {
                           Expanded(
                             flex: 5,
                             child: Container(
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 child: Row(
                                   children: <Widget>[
                                     Expanded(
@@ -117,7 +117,7 @@ class _UserProfileState extends State<UserProfile> {
                                             flex: 1,
                                             child: Container(
                                               alignment: Alignment.centerLeft,
-                                              child: Text(
+                                              child: const Text(
                                                 'Date Of Birth:',
                                                 style: TextStyle(fontSize: 16),
                                               ),
@@ -127,7 +127,7 @@ class _UserProfileState extends State<UserProfile> {
                                             flex: 1,
                                             child: Container(
                                               alignment: Alignment.centerLeft,
-                                              child: Text(
+                                              child: const Text(
                                                 'Shop Name:',
                                                 style: TextStyle(
                                                   fontSize: 16,
@@ -139,7 +139,7 @@ class _UserProfileState extends State<UserProfile> {
                                             flex: 1,
                                             child: Container(
                                               alignment: Alignment.centerLeft,
-                                              child: Text(
+                                              child: const Text(
                                                 'Address:',
                                                 style: TextStyle(fontSize: 16),
                                               ),
@@ -162,7 +162,7 @@ class _UserProfileState extends State<UserProfile> {
                                               child: Container(
                                                 alignment:
                                                     Alignment.center,
-                                                child: Text('26/01/1980',style: TextStyle(fontSize: 14),textAlign: TextAlign.justify,),
+                                                child: const Text('26/01/1980',style: TextStyle(fontSize: 14),textAlign: TextAlign.justify,),
                                               ),
                                             ),
                                             Expanded(
@@ -170,7 +170,7 @@ class _UserProfileState extends State<UserProfile> {
                                               child: Container(
                                                 alignment:
                                                     Alignment.center,
-                                                child: Text("Hudson's Store",style: TextStyle(fontSize: 14),textAlign: TextAlign.justify,),
+                                                child: const Text("Hudson's Store",style: TextStyle(fontSize: 14),textAlign: TextAlign.justify,),
                                               ),
                                             ),
                                             Expanded(
@@ -178,7 +178,7 @@ class _UserProfileState extends State<UserProfile> {
                                               child: Container(
                                                 alignment:
                                                     Alignment.center,
-                                                child: Text('West NewBerry Massachussets 1234',style: TextStyle(fontSize: 14),),
+                                                child: const Text('West NewBerry Massachussets 1234',style: TextStyle(fontSize: 14),),
                                               ),
                                             ),
                                               Expanded(
@@ -196,11 +196,11 @@ class _UserProfileState extends State<UserProfile> {
                       )),
                 )),
             Container(
-              padding: EdgeInsets.only(left:20,right: 20,top: 10,bottom: 10),
+              padding: const EdgeInsets.only(left:20,right: 20,top: 10,bottom: 10),
               width: double.infinity,
               height: 70,
               child: MaterialButton(
-                child: Text('Edit Profile'),
+                child: const Text('Edit Profile'),
                 color: Colors.orangeAccent,
                 onPressed: () {},
               ),

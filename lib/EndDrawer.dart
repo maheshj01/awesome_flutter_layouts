@@ -49,13 +49,13 @@ class _AwesomeEndDrawerState extends State<AwesomeEndDrawer> {
                                 Container(
                                   height: 50,
                                   width: 50,
-                                  margin: EdgeInsets.only(
+                                  margin: const EdgeInsets.only(
                                     top: 40,
                                   ),
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: Colors.white),
-                                  padding: EdgeInsets.all(5),
+                                  padding: const EdgeInsets.all(5),
                                   child: CircleAvatar(
                                     backgroundImage:
                                         NetworkImage('${imageurl[0]}'),
@@ -70,12 +70,12 @@ class _AwesomeEndDrawerState extends State<AwesomeEndDrawer> {
                           child: Container(
                             height: 130,
                             width: 150,
-                            margin: EdgeInsets.symmetric(
+                            margin: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 10),
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                    offset: Offset(0, 5.0),
+                                    offset: const Offset(0, 5.0),
                                     blurRadius: 2.0,
                                     color: colors[0][0],
                                   )
@@ -91,15 +91,15 @@ class _AwesomeEndDrawerState extends State<AwesomeEndDrawer> {
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text(
+                                        padding: const EdgeInsets.all(10),
+                                        child: const Text(
                                           'John Doe',
                                           style: TextStyle(color: Colors.white),
                                         ),
                                       ),
                                       Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text(
+                                        padding: const EdgeInsets.all(10),
+                                        child: const Text(
                                           '18:50',
                                           style: TextStyle(color: Colors.white),
                                         ),
@@ -110,8 +110,8 @@ class _AwesomeEndDrawerState extends State<AwesomeEndDrawer> {
                                 Expanded(
                                   flex: 4,
                                   child: Container(
-                                    padding: EdgeInsets.all(10),
-                                    child: Text(
+                                    padding: const EdgeInsets.all(10),
+                                    child: const Text(
                                       SOMETEXT,
                                       style: TextStyle(color: Colors.white),
                                     ),
@@ -156,17 +156,17 @@ class _AwesomeEndDrawerState extends State<AwesomeEndDrawer> {
         actions: [
           Builder(
             builder: (context) => IconButton(
-              icon: Icon(Icons.menu),
+              icon: const Icon(Icons.menu),
               onPressed: () => Scaffold.of(context).openEndDrawer(),
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             ),
           ),
         ],
-        leading: BackButton(),
+        leading: const BackButton(),
         automaticallyImplyLeading: true,
       ),
       body: Container(
-        child: Center(
+        child: const Center(
           child: Text('Tap the Menu on Top Right'),
         ),
       ),

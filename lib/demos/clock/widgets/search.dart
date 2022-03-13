@@ -45,7 +45,8 @@ class _SearchBuilderState extends State<SearchBuilder> {
           borderRadius: BorderRadius.circular(circle_radius * 1.6)),
       child: TextField(
           controller: controller,
-          onChanged: (x) => widget.onChange!(x),
+          onChanged: (x) =>
+              widget.onChange != null ? widget.onChange!(x) : null,
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
               border: InputBorder.none,

@@ -16,7 +16,7 @@ class _BottomSheetAppState extends State<BottomSheetApp> {
   void _showCustomTimePicker() {
     showModalBottomSheet(
         backgroundColor: beachRed[50],
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(15.0)),
         ),
         context: context,
@@ -38,7 +38,7 @@ class _BottomSheetAppState extends State<BottomSheetApp> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               'Push the Button to View the bottom Sheet:',
             ),
             Text(
@@ -52,7 +52,7 @@ class _BottomSheetAppState extends State<BottomSheetApp> {
         heroTag: 'Column-Picker',
         onPressed: _showCustomTimePicker,
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

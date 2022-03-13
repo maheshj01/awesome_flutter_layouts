@@ -38,7 +38,7 @@ List<List<Color>> colors = <List<Color>>[
 
 List<Color?> materialColors = [
   Colors.amberAccent[100],
-  Color(0xffe6ee9c),
+  const Color(0xffe6ee9c),
   Colors.green[300],
   Colors.teal[100],
   Colors.indigo[100],
@@ -49,7 +49,7 @@ List<Color?> materialColors = [
   Colors.blueGrey[100],
 ];
 TextStyle subHeadingTextStyle =
-    TextStyle(fontSize: 12, fontWeight: FontWeight.w500);
+    const TextStyle(fontSize: 12, fontWeight: FontWeight.w500);
 // add your class name in this list
 
 List<Widget> layoutList = [
@@ -60,7 +60,7 @@ List<Widget> layoutList = [
   const BottomSheetApp(),
   const ClipPathTorchEffect(),
   const DarkBuilder(),
-  MyHomePage(),
+  const MyHomePage(),
 ];
 
 // add a title to your awesome layout as an identity this will appear in the list View in main.dart

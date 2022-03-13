@@ -1,4 +1,5 @@
 import 'package:awesome_flutter_layouts/demos/clock/constants/constants.dart';
+import 'package:awesome_flutter_layouts/demos/clock/pages/detail.dart';
 import 'package:awesome_flutter_layouts/demos/clock/widgets/appbar.dart';
 import 'package:awesome_flutter_layouts/demos/clock/widgets/gridtile.dart';
 import 'package:awesome_flutter_layouts/demos/clock/widgets/new_header.dart';
@@ -42,6 +43,7 @@ class _HomeState extends State<Home> {
                     '$assetsPath/bell.png',
                     height: size_md_6 * 4,
                   ),
+                  onTap: () {},
                   label: "24",
                 ),
               ),
@@ -84,9 +86,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             NewArrivalsHeader(
-              onTap: () {
-                print('new arrivals');
-              },
+              onTap: () {},
             ),
             Padding(
               padding: const EdgeInsets.all(size_ex_lg_24),
@@ -109,20 +109,31 @@ class _HomeState extends State<Home> {
             ),
             GridView.builder(
                 shrinkWrap: true,
-                itemCount: 6,
+                itemCount: clocks.length,
                 physics: const NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.symmetric(
-                    horizontal: size_ex_lg_24, vertical: size_ex_lg_24),
+                        horizontal: size_ex_lg_24, vertical: size_ex_lg_24) +
+                    const EdgeInsets.only(
+                        bottom: kBottomNavigationBarHeight * 1.5),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: 160 / 218,
                     crossAxisCount: 2,
                     mainAxisSpacing: 8,
                     crossAxisSpacing: 6),
                 itemBuilder: (_, index) {
-                  return const KGridTile(
-                      image: '$assetsPath/clock_dark_pink.png',
-                      title: 'Clock title',
-                      price: 250);
+                  return Hero(
+                    tag: 'item $index',
+                    child: KGridTile(
+                      clock: clocks[index],
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => ClockDetail(
+                                  heroTag: 'item $index',
+                                  clock: clocks[index],
+                                )));
+                      },
+                    ),
+                  );
                 })
           ],
         ),
