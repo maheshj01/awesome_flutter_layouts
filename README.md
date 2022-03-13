@@ -12,13 +12,24 @@
   <img src="https://user-images.githubusercontent.com/31410839/54543309-6f85c980-49c3-11e9-8093-643e5b88c8aa.png" width="250"/> 
 </p>
 <p float="left;padding=10px">
- <a href="https://github.com/maheshmnj/Awesome-Flutter-Layouts/blob/master/lib/EndDrawer.dart"><img src="https://user-images.githubusercontent.com/31410839/74084319-f89e6700-4a93-11ea-84fb-b8b228378a29.gif" width="250"/></a>
+ <a href="https://github.com/maheshmnj/Awesome-Flutter-Layouts/blob/master/lib/EndDrawer.dart"><img src="https://user-images.githubusercontent.com/31410839/74084319-f89e6700-4a93-11ea-84fb-b8b228378a29.gif" target="_blank" width="250"/></a>
 <a href="https://medium.com/@maheshmnj/search-as-you-type-in-flutter-e042168e6517">
-<img src="https://miro.medium.com/max/580/1*bbZO52HX0Xos_2D6hW4zGQ.gif" width="250"/>
+<img src="https://miro.medium.com/max/580/1*bbZO52HX0Xos_2D6hW4zGQ.gif" target="_blank" width="250"/>
 </a>
- <a href="https://github.com/maheshmnj/Awesome-Flutter-Layouts/blob/master/lib/multi_column_picker.dart"> <img src="https://user-images.githubusercontent.com/31410839/95657524-8c986500-0b32-11eb-802c-fd18a21f481b.gif" width="250"/></a>
+ <a href="https://github.com/maheshmnj/Awesome-Flutter-Layouts/blob/master/lib/multi_column_picker.dart"> <img src="https://user-images.githubusercontent.com/31410839/95657524-8c986500-0b32-11eb-802c-fd18a21f481b.gif" target="_blank" width="250"/></a>
+</p>
+<p float="left;padding=10px">
+ 
+### Demos
+
+<p float="left;padding=10px">
+ <a href="https://github.com/maheshmnj/Awesome-Flutter-Layouts/tree/master/lib/demos/clock"><img src="https://user-images.githubusercontent.com/31410839/158056927-b8cc37d8-26cb-4a9b-a789-53c678670114.gif" target="_blank" width="250"/></a>
+
 </p>
 
+ 
+ 
+</p>
 
 ## Contributing
 
