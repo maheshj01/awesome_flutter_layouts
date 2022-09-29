@@ -24,10 +24,11 @@
 
 <p float="left;padding=10px">
  <a href="https://github.com/maheshmnj/Awesome-Flutter-Layouts/tree/master/lib/demos/clock"><img src="https://user-images.githubusercontent.com/31410839/158056927-b8cc37d8-26cb-4a9b-a789-53c678670114.gif" target="_blank" width="250"/></a>
-
 </p>
 
- 
+### Design Credits: 
+
+https://www.instagram.com/p/CQc6q-1LRqO/
  
 </p>
 
@@ -39,3 +40,4 @@ In case you need help
 I am very much excited to see what you build :)
 
 Tip: To link images/gifs upload the images to github cdn (Go to Issues of any git repo-->new issue --->drop the images in box  and you can use that url as a link to your images/gifs )**
+
