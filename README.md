@@ -36,8 +36,7 @@ https://www.instagram.com/p/CQc6q-1LRqO/
 
 Please refer the [Contribution guidelines](https://github.com/maheshmnj/Awesome-Flutter-Layouts/blob/master/CONTRIBUTING.md) before you start.
 
-In case you need help
-I am very much excited to see what you build :)
+In case you need help feel free to ping me on twitter @maheshmnj, I am excited to see what you build :)
 
-Tip: To link images/gifs upload the images to github cdn (Go to Issues of any git repo-->new issue --->drop the images in box  and you can use that url as a link to your images/gifs )**
+> Tip: To link images/gifs upload the images to github cdn (Go to Issues of any git repo-->new issue --->drop the images in box  and you can use that url as a link to your images/gifs )**
 
