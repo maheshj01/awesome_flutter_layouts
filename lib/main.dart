@@ -1,5 +1,6 @@
-import 'package:awesome_flutter_layouts/darkmode.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'const/const.dart';
 
 void main() => runApp(MyApp());
@@ -7,20 +8,70 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
-      darkTheme: ThemeData.dark(),
-      home: const MyHomePage(title: 'Awesome Flutter Layouts'),
-    );
+    return AnimatedBuilder(
+        animation: appSetting,
+        builder: (BuildContext context, Widget? child) {
+          return MaterialApp(
+              title: 'BottomNavbar Demo',
+              debugShowCheckedModeBanner: kDebugMode,
+              themeMode:
+                  appSetting.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+              darkTheme: ThemeData.dark(
+                useMaterial3: true,
+              ).copyWith(
+                  colorScheme: ColorScheme.fromSeed(
+                      seedColor: appSetting.themeSeed,
+                      brightness: Brightness.dark)),
+              theme: ThemeData(
+                  useMaterial3: true,
+                  primaryColorDark: appSetting.themeSeed,
+                  colorScheme:
+                      ColorScheme.fromSeed(seedColor: appSetting.themeSeed)),
+              home: const MyHomePage(title: 'Awesome Flutter Layouts'));
+        });
+  }
+}
+
+AppSetting appSetting = AppSetting();
+final List<Color> themeColorSeed = [
+  Colors.blue,
+  Colors.red,
+  Colors.green,
+  Colors.purple,
+  Colors.orange,
+  Colors.teal,
+  Colors.pink,
+  Colors.indigo,
+  Colors.brown,
+  Colors.cyan,
+  Colors.deepOrange,
+  Colors.deepPurple,
+  Colors.lime,
+  Colors.amber,
+  Colors.lightBlue,
+  Colors.lightGreen,
+  Colors.yellow,
+  Colors.grey,
+];
+
+class AppSetting extends ChangeNotifier {
+  AppSetting({this.isDarkMode = false});
+  bool isDarkMode;
+  Color themeSeed = Colors.blue;
+
+  void changeThemeSeed(Color color) {
+    themeSeed = color;
+    notifyListeners();
+  }
+
+  void toggleTheme() {
+    isDarkMode = !isDarkMode;
+    notifyListeners();
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({required this.title, Key? key}) : super(key: key);
 
   final String title;
 
@@ -33,53 +84,66 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => child));
   }
 
+  double index = 0;
   bool isDark = false;
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    return DarkTransition(
-      isDark: isDark,
-      offset: Offset(mediaQuery.size.width - 50, 40),
-      duration: const Duration(milliseconds: 800),
-      childBuilder: (context, int index) {
-        return Scaffold(
-            appBar: AppBar(
-              title: Text(widget.title),
-              actions: [
-                IconButton(
-                  icon: isDark
-                      ? const Icon(Icons.wb_sunny)
-                      : const Icon(Icons.brightness_2),
-                  onPressed: () {
-                    setState(() {
-                      isDark = !isDark;
-                    });
-                  },
-                )
-              ],
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+          actions: [
+            IconButton(
+              icon: isDark
+                  ? const Icon(Icons.wb_sunny)
+                  : const Icon(Icons.brightness_2),
+              onPressed: () {
+                setState(() {
+                  isDark = !isDark;
+                });
+              },
+            )
+          ],
+        ),
+        body: Column(
+          children: [
+            const Text('Theme Color'),
+            Slider(
+                value: index,
+                min: 0,
+                divisions: themeColorSeed.length - 1,
+                label: themeColorSeed[index.toInt()].toString(),
+                thumbColor: appSetting.themeSeed,
+                max: themeColorSeed.length.toDouble() - 1,
+                onChanged: (x) {
+                  setState(() {
+                    index = x;
+                  });
+                  appSetting.changeThemeSeed(themeColorSeed[index.toInt()]);
+                }),
+            Expanded(
+              child: ListView.separated(
+                itemCount: layout_title.length,
+                separatorBuilder: (BuildContext context, int currentitem) {
+                  return Container(
+                    width: double.infinity,
+                    height: 0.1,
+                    color: Colors.black,
+                  );
+                },
+                itemBuilder: (BuildContext context, int currentitem) {
+                  return ListTile(
+                    onTap: () {
+                      final Widget child =
+                          layoutList[currentitem % layoutList.length];
+                      _push(child);
+                    },
+                    title:
+                        Text(layout_title[currentitem % layout_title.length]),
+                  );
+                },
+              ),
             ),
-            body: ListView.separated(
-              itemCount: layout_title.length,
-              separatorBuilder: (BuildContext context, int currentitem) {
-                return Container(
-                  width: double.infinity,
-                  height: 0.1,
-                  color: Colors.black,
-                );
-              },
-              itemBuilder: (BuildContext context, int currentitem) {
-                return ListTile(
-                  onTap: () {
-                    final Widget child =
-                        layoutList[currentitem % layoutList.length];
-                    _push(child);
-                  },
-                  leading: const Icon(Icons.list),
-                  title: Text(layout_title[currentitem % layout_title.length]),
-                );
-              },
-            ));
-      },
-    );
+          ],
+        ));
   }
 }
