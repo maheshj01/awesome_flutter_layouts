@@ -1,1 +1,1 @@
-const List tabBarTitle = ['Designer','Category','Attention'];
+const List tabBarTitle = ['Designer', 'Category', 'Attention'];
