@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 
 class KGridTile extends StatelessWidget {
   const KGridTile(
-      {Key? key,
-      required this.clock,
+      {required this.clock, Key? key,
       this.onTap,
       this.onAddToCart})
       : super(key: key);
@@ -54,7 +53,7 @@ class KGridTile extends StatelessWidget {
                         clock.title,
                         style: Theme.of(context)
                             .textTheme
-                            .headline4!
+                            .headlineMedium!
                             .copyWith(fontSize: 14),
                       ),
                     ),
@@ -62,10 +61,10 @@ class KGridTile extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                             horizontal: 10,
                           ) +
-                          EdgeInsets.only(bottom: 10),
+                          const EdgeInsets.only(bottom: 10),
                       child: Text(
                         '\$${clock.price}',
-                        style: Theme.of(context).textTheme.headline5,
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                     )
                   ],

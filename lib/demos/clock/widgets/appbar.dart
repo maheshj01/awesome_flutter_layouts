@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ClockBar extends StatefulWidget {
+  const ClockBar({Key? key, this.title, this.leading, this.trailing})
+      : super(key: key);
   final Widget? title;
   final Widget? leading;
   final Widget? trailing;
-  const ClockBar({Key? key, this.title, this.leading, this.trailing})
-      : super(key: key);
 
   @override
   ClockBarState createState() => ClockBarState();

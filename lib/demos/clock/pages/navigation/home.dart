@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
                     height: size_md_6 * 4,
                   ),
                   onTap: () {},
-                  label: "24",
+                  label: '24',
                 ),
               ),
             ),
@@ -95,13 +95,13 @@ class _HomeState extends State<Home> {
                 children: [
                   Text(
                     'Popular Products 🔥',
-                    style: Theme.of(context).textTheme.headline4,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   Text(
                     'See All',
                     style: Theme.of(context)
                         .textTheme
-                        .headline5!
+                        .headlineSmall!
                         .copyWith(color: pink),
                   )
                 ],

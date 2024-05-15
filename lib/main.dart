@@ -1,3 +1,4 @@
+import 'package:awesome_flutter_layouts/extensions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -111,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 value: index,
                 min: 0,
                 divisions: themeColorSeed.length - 1,
-                label: themeColorSeed[index.toInt()].toString(),
+                label: themeColorSeed[index.toInt()].toColorString(),
                 thumbColor: appSetting.themeSeed,
                 max: themeColorSeed.length.toDouble() - 1,
                 onChanged: (x) {

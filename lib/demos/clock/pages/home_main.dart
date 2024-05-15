@@ -1,7 +1,6 @@
 import 'package:awesome_flutter_layouts/demos/clock/constants/constants.dart';
 import 'package:awesome_flutter_layouts/demos/clock/pages/navigation/cart.dart';
 import 'package:awesome_flutter_layouts/demos/clock/pages/navigation/home.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,7 +16,7 @@ class MyHomePageState extends State<MyHomePage> {
   final Color selectedColor = pink;
   @override
   Widget build(BuildContext context) {
-    List<BottomNavBarItem> _items = [
+    final List<BottomNavBarItem> _items = [
       BottomNavBarItem(
         child:
             Icon(Icons.home, color: index == 0 ? selectedColor : Colors.white),
@@ -44,13 +43,13 @@ class MyHomePageState extends State<MyHomePage> {
                 primary: pink,
               ),
           textTheme: TextTheme(
-            headline2: GoogleFonts.montserrat(
+            displayMedium: GoogleFonts.montserrat(
                 fontSize: 34, fontWeight: FontWeight.bold, color: Colors.white),
-            headline3: GoogleFonts.dmSans(
+            displaySmall: GoogleFonts.dmSans(
                 fontSize: 24, fontWeight: FontWeight.w700, color: Colors.black),
-            headline4: GoogleFonts.dmSans(
+            headlineMedium: GoogleFonts.dmSans(
                 fontSize: 18, fontWeight: FontWeight.bold, color: black),
-            headline5: GoogleFonts.dmSans(
+            headlineSmall: GoogleFonts.dmSans(
                 fontSize: 16, fontWeight: FontWeight.w500, color: pink),
           )),
       child: Material(
@@ -59,7 +58,7 @@ class MyHomePageState extends State<MyHomePage> {
           IndexedStack(
             index: index,
             children: [
-              Home(),
+              const Home(),
               Container(
                 alignment: Alignment.center,
                 color: Colors.accents[index],
@@ -94,6 +93,13 @@ class MyHomePageState extends State<MyHomePage> {
 }
 
 class KBottomNavigation extends StatefulWidget {
+
+  const KBottomNavigation(
+      {required this.children, required this.index, Key? key,
+      this.onChange,
+      this.hasLabel = false,
+      this.backgroundColor = black})
+      : super(key: key);
   final List<BottomNavBarItem> children;
   final Function(int)? onChange;
   final bool hasLabel;
@@ -101,15 +107,6 @@ class KBottomNavigation extends StatefulWidget {
 
   /// selected index;
   final int index;
-
-  const KBottomNavigation(
-      {Key? key,
-      required this.children,
-      this.onChange,
-      this.hasLabel = false,
-      required this.index,
-      this.backgroundColor = black})
-      : super(key: key);
 
   @override
   _KBottomNavigationState createState() => _KBottomNavigationState();
@@ -140,13 +137,13 @@ class _KBottomNavigationState extends State<KBottomNavigation> {
 }
 
 class BottomNavBarItem extends StatelessWidget {
+
+  const BottomNavBarItem(
+      {required this.child, Key? key, this.label, this.isSelected = false})
+      : super(key: key);
   final String? label;
   final Widget child;
   final bool isSelected;
-
-  const BottomNavBarItem(
-      {Key? key, this.label, required this.child, this.isSelected = false})
-      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +153,7 @@ class BottomNavBarItem extends StatelessWidget {
         if (label != null)
           Text(
             label!,
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   color: isSelected ? Colors.white : Colors.white,
                 ),
           ),

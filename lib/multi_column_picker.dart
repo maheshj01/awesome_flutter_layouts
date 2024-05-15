@@ -43,7 +43,7 @@ class _BottomSheetAppState extends State<BottomSheetApp> {
             ),
             Text(
               time,
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),

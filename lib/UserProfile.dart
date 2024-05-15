@@ -8,7 +8,6 @@ class UserProfile extends StatefulWidget {
 class _UserProfileState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -101,10 +100,10 @@ class _UserProfileState extends State<UserProfile> {
                                                 ),
                                               ),
                                             ),
-                                              Expanded(
-                                            flex: 1,
-                                            child: Container(),
-                                          )
+                                            Expanded(
+                                              flex: 1,
+                                              child: Container(),
+                                            )
                                           ],
                                         ),
                                       ),
@@ -160,31 +159,42 @@ class _UserProfileState extends State<UserProfile> {
                                             Expanded(
                                               flex: 1,
                                               child: Container(
-                                                alignment:
-                                                    Alignment.center,
-                                                child: const Text('26/01/1980',style: TextStyle(fontSize: 14),textAlign: TextAlign.justify,),
+                                                alignment: Alignment.center,
+                                                child: const Text(
+                                                  '26/01/1980',
+                                                  style:
+                                                      TextStyle(fontSize: 14),
+                                                  textAlign: TextAlign.justify,
+                                                ),
                                               ),
                                             ),
                                             Expanded(
                                               flex: 1,
                                               child: Container(
-                                                alignment:
-                                                    Alignment.center,
-                                                child: const Text("Hudson's Store",style: TextStyle(fontSize: 14),textAlign: TextAlign.justify,),
+                                                alignment: Alignment.center,
+                                                child: const Text(
+                                                  "Hudson's Store",
+                                                  style:
+                                                      TextStyle(fontSize: 14),
+                                                  textAlign: TextAlign.justify,
+                                                ),
                                               ),
                                             ),
                                             Expanded(
                                               flex: 1,
                                               child: Container(
-                                                alignment:
-                                                    Alignment.center,
-                                                child: const Text('West NewBerry Massachussets 1234',style: TextStyle(fontSize: 14),),
+                                                alignment: Alignment.center,
+                                                child: const Text(
+                                                  'West NewBerry Massachussets 1234',
+                                                  style:
+                                                      TextStyle(fontSize: 14),
+                                                ),
                                               ),
                                             ),
-                                              Expanded(
-                                            flex: 1,
-                                            child: Container(),
-                                          )
+                                            Expanded(
+                                              flex: 1,
+                                              child: Container(),
+                                            )
                                           ],
                                         ),
                                       ),
@@ -196,7 +206,8 @@ class _UserProfileState extends State<UserProfile> {
                       )),
                 )),
             Container(
-              padding: const EdgeInsets.only(left:20,right: 20,top: 10,bottom: 10),
+              padding: const EdgeInsets.only(
+                  left: 20, right: 20, top: 10, bottom: 10),
               width: double.infinity,
               height: 70,
               child: MaterialButton(

@@ -2,10 +2,10 @@ import 'package:awesome_flutter_layouts/demos/clock/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class Circle extends StatelessWidget {
-  final double size;
-  final Color color;
 
   const Circle(this.size, {Key? key, this.color = black}) : super(key: key);
+  final double size;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -21,26 +21,26 @@ class Circle extends StatelessWidget {
 }
 
 class LeadingIconBuilder extends StatelessWidget {
-  final Function? onTap;
 
   const LeadingIconBuilder({Key? key, this.onTap}) : super(key: key);
+  final Function? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => onTap!.call(),
-      child: Column(
+      child: const Column(
         children: [
           Row(
-            children: const [
+            children: [
               Circle(circle_radius),
               SizedBox(width: size_sm_4),
               Circle(circle_radius, color: pink),
             ],
           ),
-          const SizedBox(height: size_sm_4),
+          SizedBox(height: size_sm_4),
           Row(
-            children: const [
+            children: [
               Circle(circle_radius),
               SizedBox(width: size_sm_4),
               Circle(circle_radius),
@@ -53,12 +53,6 @@ class LeadingIconBuilder extends StatelessWidget {
 }
 
 class KIcon extends StatelessWidget {
-  final Widget icon;
-  final String? label;
-  final Color labelColor;
-  final Color color;
-  final Function? onTap;
-  final double? size;
 
   const KIcon(this.icon,
       {Key? key,
@@ -68,6 +62,12 @@ class KIcon extends StatelessWidget {
       this.labelColor = black,
       this.color = Colors.white})
       : super(key: key);
+  final Widget icon;
+  final String? label;
+  final Color labelColor;
+  final Color color;
+  final Function? onTap;
+  final double? size;
 
   @override
   Widget build(BuildContext context) {
@@ -89,9 +89,7 @@ class KIcon extends StatelessWidget {
               child: icon,
             ),
           ),
-          label == null
-              ? const SizedBox()
-              : Positioned(
+          if (label == null) const SizedBox() else Positioned(
                   left: size_md_6 * 5,
                   top: size_sm_4,
                   child: Container(

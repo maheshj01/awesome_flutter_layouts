@@ -2,11 +2,6 @@ import 'package:awesome_flutter_layouts/demos/clock/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class SearchBuilder extends StatefulWidget {
-  final Widget? leadingIcon;
-  final Widget? trailingIcon;
-  final String hint;
-  final TextEditingController? controller;
-  final Function(String)? onChange;
 
   const SearchBuilder(
       {Key? key,
@@ -16,6 +11,11 @@ class SearchBuilder extends StatefulWidget {
       this.onChange,
       this.controller})
       : super(key: key);
+  final Widget? leadingIcon;
+  final Widget? trailingIcon;
+  final String hint;
+  final TextEditingController? controller;
+  final Function(String)? onChange;
 
   @override
   _SearchBuilderState createState() => _SearchBuilderState();

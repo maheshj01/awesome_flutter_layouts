@@ -2,8 +2,8 @@ import 'package:awesome_flutter_layouts/demos/clock/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class NewArrivalsHeader extends StatefulWidget {
-  final Function? onTap;
   const NewArrivalsHeader({Key? key, this.onTap}) : super(key: key);
+  final Function? onTap;
 
   @override
   _NewArrivalsHeaderState createState() => _NewArrivalsHeaderState();
@@ -34,7 +34,7 @@ class _NewArrivalsHeaderState extends State<NewArrivalsHeader> {
               left: size_ex_lg_24 * 2,
               child: Text('New\nArrivals',
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline2),
+                  style: Theme.of(context).textTheme.displayMedium),
             ),
             Positioned(
                 top: 0,

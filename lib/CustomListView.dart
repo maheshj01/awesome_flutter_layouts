@@ -5,8 +5,6 @@ import 'package:awesome_flutter_layouts/const/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'const/const.dart';
-
 class CustomListView extends StatefulWidget {
   @override
   _CustomListViewState createState() => _CustomListViewState();
@@ -100,7 +98,8 @@ class _CustomListViewState extends State<CustomListView> {
                                                 data[currentitem]['name']
                                                         ['last']
                                                     .toString(),
-                                            style: const TextStyle(fontSize: 18),
+                                            style:
+                                                const TextStyle(fontSize: 18),
                                           ),
                                           Text(data[currentitem]['phone']
                                               .toString())

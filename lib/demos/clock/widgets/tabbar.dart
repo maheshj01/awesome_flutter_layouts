@@ -2,20 +2,18 @@ import 'package:awesome_flutter_layouts/demos/clock/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalTabBuilder extends StatefulWidget {
-  final List<String> tabs;
-  final String selected;
-  final TabController? controller;
-
-  final Function(String)? onChange;
   HorizontalTabBuilder(
-      {Key? key,
-      required this.tabs,
-      required this.selected,
+      {required this.tabs, required this.selected, Key? key,
       this.onChange,
       this.controller})
       : assert(tabs.isNotEmpty),
         assert(tabs.contains(selected), 'selected not present in tabs'),
         super(key: key);
+  final List<String> tabs;
+  final String selected;
+  final TabController? controller;
+
+  final Function(String)? onChange;
 
   @override
   _HorizontalTabBuilderState createState() => _HorizontalTabBuilderState();
@@ -56,7 +54,7 @@ class _HorizontalTabBuilderState extends State<HorizontalTabBuilder>
               }
             },
             tabs: widget.tabs.map((e) {
-              bool isSelected = widget.selected == e;
+              final bool isSelected = widget.selected == e;
               return Container(
                   margin:
                       EdgeInsets.only(left: e == 'Clocks' ? size_ex_lg_24 : 0),

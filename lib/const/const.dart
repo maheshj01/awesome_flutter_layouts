@@ -1,10 +1,12 @@
 import 'package:awesome_flutter_layouts/EndDrawer.dart';
 import 'package:awesome_flutter_layouts/UserProfile.dart';
 import 'package:awesome_flutter_layouts/clipmagic.dart';
+import 'package:awesome_flutter_layouts/const/ultra_gradient.dart';
 import 'package:awesome_flutter_layouts/darkmode.dart';
 import 'package:awesome_flutter_layouts/demos/clock/pages/home_main.dart';
 import 'package:awesome_flutter_layouts/search.dart';
 import 'package:flutter/material.dart';
+
 import '../CustomListView.dart';
 import '../multi_column_picker.dart';
 
@@ -61,6 +63,7 @@ List<Widget> layoutList = [
   const ClipPathTorchEffect(),
   const DarkBuilder(),
   const MyHomePage(),
+  const UltraGradientDemo(title: 'Ultra Gradient'),
 ];
 
 // add a title to your awesome layout as an identity this will appear in the list View in main.dart
@@ -73,7 +76,8 @@ const List layout_title = [
   'BottomSheets',
   'ClipPath torch effect',
   'Dark Transition',
-  'Clock Store'
+  'Clock Store',
+  'Ultra Gradient'
 ];
 // getting Random user data
 const String RANDOM_URL = 'https://randomuser.me/api/?results=100';

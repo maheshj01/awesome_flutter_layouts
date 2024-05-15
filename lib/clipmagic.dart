@@ -18,7 +18,6 @@ class _ClipPathTorchEffectState extends State<ClipPathTorchEffect> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _offsetNotifier.dispose();
     super.dispose();
   }
@@ -56,7 +55,7 @@ class _ClipPathTorchEffectState extends State<ClipPathTorchEffect> {
 
 class ImageWidget extends StatelessWidget {
   ImageWidget({Key? key}) : super(key: key);
-  String image2 =
+  final String image2 =
       'https://images.unsplash.com/photo-1593642634402-b0eb5e2eebc9?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2938&q=80';
 
   @override
@@ -92,7 +91,7 @@ class _CounterAppState extends State<CounterApp> {
             ),
             Text(
               '$counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
@@ -112,10 +111,9 @@ class _CounterAppState extends State<CounterApp> {
 }
 
 class CircleClipper extends CustomClipper<Path> {
+  CircleClipper({required this.center, required this.radius});
   final Offset center;
   final double radius;
-
-  CircleClipper({required this.center, required this.radius});
 
   @override
   Path getClip(Size size) {

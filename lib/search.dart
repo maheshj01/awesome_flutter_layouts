@@ -26,8 +26,6 @@ class _SearchState extends State<Search> {
   final ScrollController _controller = ScrollController();
   final ScrollController _controller1 = ScrollController();
 
-  var data;
-
   Future<void> getFilteredList() async {}
 
   Widget _acquaintance() {
@@ -53,9 +51,6 @@ class _SearchState extends State<Search> {
         stream: userBloc.userController.stream,
         builder: (BuildContext buildContext,
             AsyncSnapshot<List<RandomUserModel>?> snapshot) {
-          if (snapshot == null) {
-            return const CircularProgressIndicator();
-          }
           return snapshot.connectionState == ConnectionState.waiting
               ? const Center(
                   child: CircularProgressIndicator(),
@@ -221,7 +216,6 @@ class _SearchState extends State<Search> {
   void _searchUser(String searchQuery) {
     final List<RandomUserModel> searchResult = [];
     userBloc.userController.sink.add(null);
-    print('total users = ${totalUsers.length}'); //
     if (searchQuery.isEmpty) {
       userBloc.userController.sink.add(totalUsers);
       return;
@@ -317,14 +311,14 @@ class _SearchState extends State<Search> {
 
 class Tabs extends StatelessWidget {
   Tabs(
-      {Key? key,
-      required this.list,
+      {required this.list,
       required this.onIndexChange,
-      required this.index})
+      required this.index,
+      Key? key})
       : super(key: key);
   final List<String> list;
-  Function(int) onIndexChange;
-  int index;
+  final Function(int) onIndexChange;
+  final int index;
 
   @override
   Widget build(BuildContext context) {

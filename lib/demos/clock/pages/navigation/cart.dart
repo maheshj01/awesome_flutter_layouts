@@ -1,8 +1,8 @@
 import 'package:awesome_flutter_layouts/demos/clock/constants/constants.dart';
 import 'package:awesome_flutter_layouts/demos/clock/pages/detail.dart';
-import 'package:flutter/material.dart';
 import 'package:awesome_flutter_layouts/demos/clock/widgets/appbar.dart';
 import 'package:awesome_flutter_layouts/demos/clock/widgets/widgets.dart';
+import 'package:flutter/material.dart';
 
 class Cart extends StatefulWidget {
   const Cart({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class _CartState extends State<Cart> {
                   'Cart',
                   style: Theme.of(context)
                       .textTheme
-                      .headline4!
+                      .headlineMedium!
                       .copyWith(fontSize: 20),
                 ),
               ),
@@ -63,13 +63,13 @@ class _CartState extends State<Cart> {
                       children: [
                         Text(
                           'Total',
-                          style: Theme.of(context).textTheme.headline4,
+                          style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         Text(
                           '\$1072',
                           style: Theme.of(context)
                               .textTheme
-                              .headline5!
+                              .headlineSmall!
                               .copyWith(
                                   color: pink,
                                   fontWeight: FontWeight.w700,
@@ -94,8 +94,8 @@ class _CartState extends State<Cart> {
 }
 
 class CartListTile extends StatelessWidget {
+  const CartListTile({required this.clock, Key? key}) : super(key: key);
   final ClockModel clock;
-  const CartListTile({Key? key, required this.clock}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -130,15 +130,15 @@ class CartListTile extends StatelessWidget {
                       text: TextSpan(
                           style: Theme.of(context)
                               .textTheme
-                              .headline5!
+                              .headlineSmall!
                               .copyWith(color: black),
                           children: [
-                            TextSpan(text: '${clock.title}'),
+                            TextSpan(text: clock.title),
                             TextSpan(
                                 text: '   1x',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .headline5!
+                                    .headlineSmall!
                                     .copyWith(color: Colors.grey))
                           ]),
                     ),
@@ -146,7 +146,7 @@ class CartListTile extends StatelessWidget {
                       height: 2,
                     ),
                     Text('\$${clock.price}',
-                        style: Theme.of(context).textTheme.headline5!.copyWith(
+                        style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                               color: pink,
                               fontWeight: FontWeight.w700,
                             )),

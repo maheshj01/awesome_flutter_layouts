@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 
 class CarouselIndicator extends StatefulWidget {
   const CarouselIndicator(
-      {Key? key,
+      {required this.count, required this.currentIndex, Key? key,
       this.width = 20,
-      this.height = 4,
-      required this.count,
-      required this.currentIndex})
+      this.height = 4})
       : super(key: key);
 
   final double width;

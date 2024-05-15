@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TimePickerWidget extends StatefulWidget {
-  final Function(String) onChange;
 
-  const TimePickerWidget({Key? key, required this.onChange}) : super(key: key);
+  const TimePickerWidget({required this.onChange, Key? key}) : super(key: key);
+  final Function(String) onChange;
   @override
   _TimePickerWidgetState createState() => _TimePickerWidgetState();
 }

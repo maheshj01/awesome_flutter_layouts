@@ -5,10 +5,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ClockDetail extends StatefulWidget {
+  const ClockDetail({required this.heroTag, required this.clock, Key? key})
+      : super(key: key);
   final String heroTag;
   final ClockModel clock;
-  const ClockDetail({Key? key, required this.heroTag, required this.clock})
-      : super(key: key);
 
   @override
   ClockDetailState createState() => ClockDetailState();
@@ -88,13 +88,13 @@ class ClockDetailState extends State<ClockDetail> {
                 children: [
                   Text(
                     widget.clock.title,
-                    style: Theme.of(context).textTheme.headline3,
+                    style: Theme.of(context).textTheme.displaySmall,
                   ),
                   Text(
                     '\$${widget.clock.price}',
                     style: Theme.of(context)
                         .textTheme
-                        .headline5!
+                        .headlineSmall!
                         .copyWith(color: pink),
                   )
                 ],
@@ -138,18 +138,16 @@ class ClockDetailState extends State<ClockDetail> {
 }
 
 class KButton extends StatefulWidget {
+
+  const KButton(
+      {required this.onTap, required this.label, Key? key,
+      this.height = size_ex_lg_24 * 3,
+      this.width = 350})
+      : super(key: key);
   final Function onTap;
   final String label;
   final double? width;
   final double? height;
-
-  const KButton(
-      {Key? key,
-      required this.onTap,
-      required this.label,
-      this.height = size_ex_lg_24 * 3,
-      this.width = 350})
-      : super(key: key);
 
   @override
   _KButtonState createState() => _KButtonState();
@@ -163,18 +161,18 @@ class _KButtonState extends State<KButton> {
       width: widget.width,
       child: ElevatedButton(
         style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(size_ex_lg_24),
             )),
-            elevation: MaterialStateProperty.all<double>(0),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.black)),
+            elevation: WidgetStateProperty.all<double>(0),
+            backgroundColor: WidgetStateProperty.all<Color>(Colors.black)),
         onPressed: () => widget.onTap(),
         child: Text(
           widget.label,
           style: Theme.of(context)
               .textTheme
-              .headline4!
+              .headlineMedium!
               .copyWith(color: Colors.white),
         ),
       ),
@@ -184,7 +182,7 @@ class _KButtonState extends State<KButton> {
 
 class RatingsIndicator extends StatelessWidget {
   const RatingsIndicator(
-      {Key? key, required this.rating, this.totalRatings = 10})
+      {required this.rating, Key? key, this.totalRatings = 10})
       : super(key: key);
   final int rating;
   final int totalRatings;
@@ -208,6 +206,12 @@ enum Type { digital, analog }
 enum ClockMaterial { plastic, metal }
 
 class ClockModel {
+
+  ClockModel(this.title, this.description,
+      {required this.rating, this.price = 200,
+      this.material = ClockMaterial.plastic,
+      this.image = '$assetsPath/clock_dark_pink.png',
+      this.type = Type.analog});
   final String title;
   final String description;
   final String image;
@@ -215,20 +219,13 @@ class ClockModel {
   final Type type;
   final ClockMaterial material;
   final int rating;
-
-  ClockModel(this.title, this.description,
-      {this.price = 200,
-      required this.rating,
-      this.material = ClockMaterial.plastic,
-      this.image = '$assetsPath/clock_dark_pink.png',
-      this.type = Type.analog});
 }
 
 class KChip extends StatelessWidget {
+  const KChip({required this.label, required this.category, Key? key})
+      : super(key: key);
   final String label;
   final String category;
-  const KChip({Key? key, required this.label, required this.category})
-      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -239,7 +236,7 @@ class KChip extends StatelessWidget {
           category,
           style: Theme.of(context)
               .textTheme
-              .headline4!
+              .headlineMedium!
               .copyWith(fontSize: 14, color: lightGrey),
         ),
         Chip(
