@@ -236,12 +236,23 @@ class BackgroundPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint();
-    // shader.setFloat(0, size.width);
-    // shader.setFloat(1, size.height);
-    // paint.shader = shader;
+    // Set color information as uniforms in the shader
+//     shader.setFloat(0, size.width);
+//     shader.setFloat(1, size.height);
+//     shader.setFloat(
+//         2, paint.color.red / 255.0); // Red component normalized to [0, 1]
+//     shader.setFloat(
+//         3, paint.color.green / 255.0); // Green component normalized to [0, 1]
+//     shader.setFloat(
+//         4, paint.color.blue / 255.0); // Blue component normalized to [0, 1]
+// // Create shader from the fragment shader
+//     paint.shader = shader;
+    // Use shaderPaint for drawing background and shapes
     paintBackground(canvas, size, paint);
-    drawAbstractShapes(canvas, size, paint);
-    drawContrastingBlobs(canvas, size, paint);
+    drawAbstractShapes(
+        canvas, size, paint); // Use shaderPaint for drawing shapes
+    drawContrastingBlobs(
+        canvas, size, paint); // Use shaderPaint for drawing shapes
   }
 
   @override

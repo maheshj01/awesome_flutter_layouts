@@ -8,7 +8,6 @@ class UserBloc extends Bloc {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     userController.close();
   }
 }

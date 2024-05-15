@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         animation: appSetting,
         builder: (BuildContext context, Widget? child) {
           return MaterialApp(
-              title: 'BottomNavbar Demo',
+              title: 'Awesome Flutter Layouts',
               debugShowCheckedModeBanner: kDebugMode,
               themeMode:
                   appSetting.isDarkMode ? ThemeMode.dark : ThemeMode.light,

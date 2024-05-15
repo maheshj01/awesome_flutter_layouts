@@ -207,10 +207,10 @@ class _SearchState extends State<Search> {
   @override
   void initState() {
     super.initState();
-    _controller.addListener(() {
-      // _controller.jumpTo(_controller.offset);
-    });
-    _controller1.addListener(() {});
+    // _controller.addListener(() {
+    // _controller.jumpTo(_controller.offset);
+    // });
+    // _controller1.addListener(() {});
   }
 
   void _searchUser(String searchQuery) {
@@ -268,9 +268,6 @@ class _SearchState extends State<Search> {
       ),
       body: Column(
         children: <Widget>[
-          const SizedBox(
-            height: 20,
-          ),
           Container(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
