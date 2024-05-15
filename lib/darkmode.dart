@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class DarkBuilder extends StatefulWidget {
@@ -164,7 +165,6 @@ class _DarkTransitionState extends State<DarkTransition>
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     _updateRadius();
   }

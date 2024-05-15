@@ -41,9 +41,7 @@ class _CustomListViewState extends State<CustomListView> {
               itemCount: data.length, //total no of list items
               itemBuilder: (BuildContext context, int currentitem) {
                 return GestureDetector(
-                  onTap: () {
-                    print('tapped on item $currentitem');
-                  },
+                  onTap: () {},
                   child: Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(

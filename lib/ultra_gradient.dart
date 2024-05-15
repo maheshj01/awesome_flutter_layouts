@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 
 class UltraGradientDemo extends StatefulWidget {
-  const UltraGradientDemo({Key? key, required this.title}) : super(key: key);
+  const UltraGradientDemo({required this.title, Key? key}) : super(key: key);
   final String title;
   @override
   State<UltraGradientDemo> createState() => _UltraGradientDemoState();
@@ -53,8 +53,8 @@ class _UltraGradientDemoState extends State<UltraGradientDemo> {
 }
 
 class BackgroundWidget extends StatefulWidget {
+  const BackgroundWidget({required this.child, super.key});
   final Widget child;
-  const BackgroundWidget({super.key, required this.child});
 
   @override
   State<BackgroundWidget> createState() => _BackgroundWidgetState();
@@ -65,7 +65,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget>
   @override
   void initState() {
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 6));
+        AnimationController(vsync: this, duration: const Duration(seconds: 6));
     _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
     _controller.repeat(reverse: true);
     super.initState();
@@ -108,9 +108,6 @@ class _BackgroundWidgetState extends State<BackgroundWidget>
 }
 
 class BackgroundPainter extends CustomPainter {
-  final Animation<double> animation;
-  final FragmentShader shader;
-
   BackgroundPainter(this.animation, this.shader);
   Offset getOffset(Path path) {
     final pms = path.computeMetrics(forceClosed: false).elementAt(0);
@@ -118,6 +115,9 @@ class BackgroundPainter extends CustomPainter {
     final offset = pms.getTangentForOffset(length * animation.value)!.position;
     return offset;
   }
+
+  final Animation<double> animation;
+  final FragmentShader shader;
 
   // Offset getOffset(Path path) {
   //   final pms = path.computeMetrics(forceClosed: false).elementAt(0);
@@ -128,7 +128,7 @@ class BackgroundPainter extends CustomPainter {
 
   void drawSquare(Canvas canvas, Size size, Paint paint1) {
     paint1.color = Colors.blue.shade300;
-    paint1.maskFilter = MaskFilter.blur(BlurStyle.normal, 100);
+    paint1.maskFilter = const MaskFilter.blur(BlurStyle.normal, 100);
     paint1.style = PaintingStyle.fill;
     canvas.drawRRect(
         RRect.fromRectAndRadius(
@@ -137,7 +137,7 @@ class BackgroundPainter extends CustomPainter {
             width: 300,
             height: 300,
           ),
-          Radius.circular(20),
+          const Radius.circular(20),
         ),
         paint1);
   }
@@ -185,7 +185,7 @@ class BackgroundPainter extends CustomPainter {
 
   void drawCircle(Canvas canvas, Size size, Paint paint) {
     paint.color = Colors.orange;
-    Path path = Path();
+    final Path path = Path();
     paint.style = PaintingStyle.stroke;
     paint.strokeWidth = 10.0;
     path.moveTo(size.width * 1.1, size.height / 4);
@@ -198,7 +198,7 @@ class BackgroundPainter extends CustomPainter {
   }
 
   void drawAbstractShapes(Canvas canvas, Size size, Paint paint) {
-    Path path = Path();
+    final Path path = Path();
     path.moveTo(size.width * 1.2, 0);
     path.quadraticBezierTo(
         size.width * 1.2, 300, size.width * 0.4, size.height * 0.6);
@@ -206,7 +206,7 @@ class BackgroundPainter extends CustomPainter {
         size.width * 0.1, size.height * 0.7, -100, size.height * 1.2);
     path.lineTo(-50, -50);
     path.close();
-    paint.maskFilter = MaskFilter.blur(BlurStyle.normal, 100);
+    paint.maskFilter = const MaskFilter.blur(BlurStyle.normal, 100);
     canvas.drawPath(
         path,
         paint
