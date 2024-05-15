@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import 'main.dart';
+
 class UltraGradientDemo extends StatefulWidget {
   const UltraGradientDemo({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -89,8 +91,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget>
               builder: (context, child) {
                 return CustomPaint(
                   painter: BackgroundPainter(
-                    _animation,
-                  ),
+                      _animation, fragmentProgram.fragmentShader()),
                   child: Container(),
                 );
               }),
@@ -108,8 +109,9 @@ class _BackgroundWidgetState extends State<BackgroundWidget>
 
 class BackgroundPainter extends CustomPainter {
   final Animation<double> animation;
+  final FragmentShader shader;
 
-  BackgroundPainter(this.animation);
+  BackgroundPainter(this.animation, this.shader);
   Offset getOffset(Path path) {
     final pms = path.computeMetrics(forceClosed: false).elementAt(0);
     final length = pms.length;
@@ -124,8 +126,7 @@ class BackgroundPainter extends CustomPainter {
   //   return offset;
   // }
 
-  void drawSquare(Canvas canvas, Size size) {
-    final paint1 = Paint();
+  void drawSquare(Canvas canvas, Size size, Paint paint1) {
     paint1.color = Colors.blue.shade300;
     paint1.maskFilter = MaskFilter.blur(BlurStyle.normal, 100);
     paint1.style = PaintingStyle.fill;
@@ -196,9 +197,8 @@ class BackgroundPainter extends CustomPainter {
     canvas.drawCircle(offset, 150, paint);
   }
 
-  void drawAbstractShapes(Canvas canvas, Size size) {
+  void drawAbstractShapes(Canvas canvas, Size size, Paint paint) {
     Path path = Path();
-    final paint = Paint();
     path.moveTo(size.width * 1.2, 0);
     path.quadraticBezierTo(
         size.width * 1.2, 300, size.width * 0.4, size.height * 0.6);
@@ -212,32 +212,35 @@ class BackgroundPainter extends CustomPainter {
         paint
           ..color = Colors.purple.shade200
           ..style = PaintingStyle.fill);
-    drawSquare(canvas, size);
+    drawSquare(canvas, size, paint);
   }
 
   void drawContrastingBlobs(Canvas canvas, Size size, Paint paint) {
-    paint.maskFilter = MaskFilter.blur(BlurStyle.normal, 30);
+    paint.maskFilter = const MaskFilter.blur(BlurStyle.normal, 30);
     paint.blendMode = BlendMode.overlay;
     drawCircle(canvas, size, paint);
     drawTriangle(canvas, size, paint);
     drawEllipse(canvas, size, paint);
   }
 
-  void paintBackground(Canvas canvas, Size size) {
+  void paintBackground(Canvas canvas, Size size, Paint paint) {
     canvas.drawRect(
         Rect.fromCenter(
           center: Offset(size.width * 0.5, size.height * 0.5),
           width: size.width,
           height: size.height,
         ),
-        Paint()..color = Colors.black);
+        paint..color = Colors.black);
   }
 
   @override
   void paint(Canvas canvas, Size size) {
-    paintBackground(canvas, size);
-    drawAbstractShapes(canvas, size);
     final paint = Paint();
+    // shader.setFloat(0, size.width);
+    // shader.setFloat(1, size.height);
+    // paint.shader = shader;
+    paintBackground(canvas, size, paint);
+    drawAbstractShapes(canvas, size, paint);
     drawContrastingBlobs(canvas, size, paint);
   }
 

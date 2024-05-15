@@ -1,7 +1,7 @@
 import 'package:awesome_flutter_layouts/EndDrawer.dart';
 import 'package:awesome_flutter_layouts/UserProfile.dart';
 import 'package:awesome_flutter_layouts/clipmagic.dart';
-import 'package:awesome_flutter_layouts/const/ultra_gradient.dart';
+import 'package:awesome_flutter_layouts/ultra_gradient.dart';
 import 'package:awesome_flutter_layouts/darkmode.dart';
 import 'package:awesome_flutter_layouts/demos/clock/pages/home_main.dart';
 import 'package:awesome_flutter_layouts/search.dart';

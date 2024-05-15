@@ -1,10 +1,18 @@
+import 'dart:ui';
+
 import 'package:awesome_flutter_layouts/extensions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'const/const.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  fragmentProgram =
+      await FragmentProgram.fromAsset('assets/shaders/shader.frag');
+  runApp(MyApp());
+}
+
+late FragmentProgram fragmentProgram;
 
 class MyApp extends StatelessWidget {
   @override
