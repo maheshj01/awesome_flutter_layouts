@@ -1,5 +1,6 @@
 import 'package:awesome_flutter_layouts/EndDrawer.dart';
 import 'package:awesome_flutter_layouts/UserProfile.dart';
+import 'package:awesome_flutter_layouts/blast_effect.dart';
 import 'package:awesome_flutter_layouts/clipmagic.dart';
 import 'package:awesome_flutter_layouts/darkmode.dart';
 import 'package:awesome_flutter_layouts/demos/clock/pages/home_main.dart';
@@ -15,27 +16,12 @@ import '../multi_column_picker.dart';
 // Used for CustomListview
 
 List<List<Color>> colors = <List<Color>>[
-  [
-    Colors.redAccent,
-    Colors.red.shade200,
-  ],
-  [
-    Colors.pinkAccent,
-    Colors.pink.shade200,
-  ],
-  [
-    Colors.orangeAccent,
-    Colors.orange.shade200,
-  ],
-  [
-    Colors.purpleAccent,
-    Colors.purple.shade200,
-  ],
+  [Colors.redAccent, Colors.red.shade200],
+  [Colors.pinkAccent, Colors.pink.shade200],
+  [Colors.orangeAccent, Colors.orange.shade200],
+  [Colors.purpleAccent, Colors.purple.shade200],
   [Colors.cyanAccent, Colors.cyan.shade200],
-  [
-    Colors.yellowAccent,
-    Colors.yellow.shade200,
-  ],
+  [Colors.yellowAccent, Colors.yellow.shade200],
 ];
 
 List<Color?> materialColors = [
@@ -50,8 +36,10 @@ List<Color?> materialColors = [
   Colors.orange[100],
   Colors.blueGrey[100],
 ];
-TextStyle subHeadingTextStyle =
-    const TextStyle(fontSize: 12, fontWeight: FontWeight.w500);
+TextStyle subHeadingTextStyle = const TextStyle(
+  fontSize: 12,
+  fontWeight: FontWeight.w500,
+);
 // add your class name in this list
 
 List<Widget> layoutList = [
@@ -64,6 +52,7 @@ List<Widget> layoutList = [
   const DarkBuilder(),
   const MyHomePage(),
   const UltraGradientDemo(title: 'Ultra Gradient'),
+  const ParticleAnimationPage(),
 ];
 
 // add a title to your awesome layout as an identity this will appear in the list View in main.dart
@@ -77,7 +66,8 @@ const List layout_title = [
   'ClipPath torch effect',
   'Dark Transition',
   'Clock Store',
-  'Ultra Gradient'
+  'Ultra Gradient',
+  'Particle Blast Effect',
 ];
 // getting Random user data
 const String RANDOM_URL = 'https://randomuser.me/api/?results=100';

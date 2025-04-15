@@ -1,8 +1,10 @@
 import 'dart:ui';
 
+import 'package:awesome_flutter_layouts/blast_effect.dart';
 import 'package:awesome_flutter_layouts/extensions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'const/const.dart';
 
@@ -10,7 +12,9 @@ Future<void> main() async {
   fragmentProgram = await FragmentProgram.fromAsset(
     'assets/shaders/shader.frag',
   );
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(create: (context) => ParticleData(), child: MyApp()),
+  );
 }
 
 late FragmentProgram fragmentProgram;
