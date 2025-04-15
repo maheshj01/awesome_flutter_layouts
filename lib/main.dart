@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 import 'const/const.dart';
 
 Future<void> main() async {
-  fragmentProgram =
-      await FragmentProgram.fromAsset('assets/shaders/shader.frag');
+  fragmentProgram = await FragmentProgram.fromAsset(
+    'assets/shaders/shader.frag',
+  );
   runApp(MyApp());
 }
 
@@ -18,26 +19,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation: appSetting,
-        builder: (BuildContext context, Widget? child) {
-          return MaterialApp(
-              title: 'Awesome Flutter Layouts',
-              debugShowCheckedModeBanner: kDebugMode,
-              themeMode:
-                  appSetting.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-              darkTheme: ThemeData.dark(
-                useMaterial3: true,
-              ).copyWith(
-                  colorScheme: ColorScheme.fromSeed(
-                      seedColor: appSetting.themeSeed,
-                      brightness: Brightness.dark)),
-              theme: ThemeData(
-                  useMaterial3: true,
-                  primaryColorDark: appSetting.themeSeed,
-                  colorScheme:
-                      ColorScheme.fromSeed(seedColor: appSetting.themeSeed)),
-              home: const MyHomePage(title: 'Awesome Flutter Layouts'));
-        });
+      animation: appSetting,
+      builder: (BuildContext context, Widget? child) {
+        return MaterialApp(
+          title: 'Awesome Flutter Layouts',
+          debugShowCheckedModeBanner: kDebugMode,
+          themeMode: appSetting.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+          darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: appSetting.themeSeed,
+              brightness: Brightness.dark,
+            ),
+          ),
+          theme: ThemeData(
+            useMaterial3: true,
+            primaryColorDark: appSetting.themeSeed,
+            colorScheme: ColorScheme.fromSeed(seedColor: appSetting.themeSeed),
+          ),
+          home: const MyHomePage(title: 'Awesome Flutter Layouts'),
+        );
+      },
+    );
   }
 }
 
@@ -98,61 +100,62 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          actions: [
-            IconButton(
-              icon: isDark
-                  ? const Icon(Icons.wb_sunny)
-                  : const Icon(Icons.brightness_2),
-              onPressed: () {
-                setState(() {
-                  isDark = !isDark;
-                });
-              },
-            )
-          ],
-        ),
-        body: Column(
-          children: [
-            const Text('Theme Color'),
-            Slider(
-                value: index,
-                min: 0,
-                divisions: themeColorSeed.length - 1,
-                label: themeColorSeed[index.toInt()].toColorString(),
-                thumbColor: appSetting.themeSeed,
-                max: themeColorSeed.length.toDouble() - 1,
-                onChanged: (x) {
-                  setState(() {
-                    index = x;
-                  });
-                  appSetting.changeThemeSeed(themeColorSeed[index.toInt()]);
-                }),
-            Expanded(
-              child: ListView.separated(
-                itemCount: layout_title.length,
-                separatorBuilder: (BuildContext context, int currentitem) {
-                  return Container(
-                    width: double.infinity,
-                    height: 0.1,
-                    color: Colors.black,
-                  );
-                },
-                itemBuilder: (BuildContext context, int currentitem) {
-                  return ListTile(
-                    onTap: () {
-                      final Widget child =
-                          layoutList[currentitem % layoutList.length];
-                      _push(child);
-                    },
-                    title:
-                        Text(layout_title[currentitem % layout_title.length]),
-                  );
-                },
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: [
+          IconButton(
+            icon:
+                isDark
+                    ? const Icon(Icons.wb_sunny)
+                    : const Icon(Icons.brightness_2),
+            onPressed: () {
+              setState(() {
+                isDark = !isDark;
+              });
+            },
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                index = (index + 1) % themeColorSeed.length;
+              });
+              appSetting.changeThemeSeed(themeColorSeed[index.toInt()]);
+            },
+            child: SizedBox(
+              width: 80,
+              child: Center(
+                child: Text('${themeColorSeed[index.toInt()].toColorString()}'),
               ),
             ),
-          ],
-        ));
+          ),
+          Expanded(
+            child: ListView.separated(
+              itemCount: layout_title.length,
+              separatorBuilder: (BuildContext context, int currentitem) {
+                return Container(
+                  width: double.infinity,
+                  height: 0.1,
+                  color: Colors.black,
+                );
+              },
+              itemBuilder: (BuildContext context, int currentitem) {
+                return ListTile(
+                  onTap: () {
+                    final Widget child =
+                        layoutList[currentitem % layoutList.length];
+                    _push(child);
+                  },
+                  title: Text(layout_title[currentitem % layout_title.length]),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
